@@ -55,6 +55,7 @@
     text-align: center;
     box-sizing: border-box;
     outline: none;
+    border: none;
     /* border: .5px solid #1CC676; */
     border-radius: 10px;
     /* background: #45B69C; */

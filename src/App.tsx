@@ -10,6 +10,7 @@ import { VendorApplyComponent } from './components/vendor-apply-component/Vendor
 import { PerformerApplyComponent } from './components/peformer-apply-component/PerformerApplyComponent';
 import { PerformerDashboardComponent } from './components/performer-dashboard-component/PerformerDashboardComponent';
 import { ContactFormComponent } from './components/contact-form-component/ContactFormComponent';
+import { ManagerDashboardComponent } from './components/manager-dashboard-component/ManagerDashboardComponent';
 
 const App: React.FC = () => {
   return (
@@ -24,6 +25,7 @@ const App: React.FC = () => {
           <Route path="/ven-apply" component={VendorApplyComponent} />
           <Route path="/performer" component={PerformerDashboardComponent} />
           <Route path="/per-apply" component={PerformerApplyComponent} />
+          <Route path="/manager" component={ManagerDashboardComponent} />
           <Route path="/" component={HomeComponent} />
         </Switch>
       </Router>
