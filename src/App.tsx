@@ -10,7 +10,10 @@ import { VendorApplyComponent } from './components/vendor-apply-component/Vendor
 import { PerformerApplyComponent } from './components/peformer-apply-component/PerformerApplyComponent';
 import { PerformerDashboardComponent } from './components/performer-dashboard-component/PerformerDashboardComponent';
 import { ContactFormComponent } from './components/contact-form-component/ContactFormComponent';
-import { ManagerDashboardComponent } from './components/manager-dashboard-component/ManagerDashboardComponent';
+import ManagerDashboardComponent from './components/manager-dashboard-component/ManagerDashboardComponent';
+import ManagerInboxComponent from './components/manager-dashboard-component/ManagerInboxComponent';
+import ManagerPerformerListComponent from './components/manager-dashboard-component/ManagerPerformerComponent';
+import ManagerVendorComponent from './components/manager-dashboard-component/ManagerVendorComponent';
 
 const App: React.FC = () => {
   return (
@@ -26,6 +29,9 @@ const App: React.FC = () => {
           <Route path="/performer" component={PerformerDashboardComponent} />
           <Route path="/per-apply" component={PerformerApplyComponent} />
           <Route path="/manager" component={ManagerDashboardComponent} />
+          <Route path="/man-inbox" component={ManagerInboxComponent} />
+          <Route path="/man-performer" component={ManagerPerformerListComponent} />
+          <Route path="/man-vendor" component={ManagerVendorComponent} />
           <Route path="/" component={HomeComponent} />
         </Switch>
       </Router>
