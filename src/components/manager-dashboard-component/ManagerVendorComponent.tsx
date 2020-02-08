@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
     toolbar: theme.mixins.toolbar,
     content: {
       flexGrow: 1,
-      backgroundColor: '#000',
+      // backgroundColor: '#000',
       padding: theme.spacing(3),
     },
   }),
