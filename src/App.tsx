@@ -11,8 +11,8 @@ const App: React.FC = () => {
       <Router>
         <Switch>
         <Route path="/login" component={LoginComponent} />
-        <Route path="/" component={HomeComponent} />
         <Route path="/register" component={RegisterComponent} />
+        <Route path="/" component={HomeComponent} />
         </Switch>
       </Router>
     </div>
