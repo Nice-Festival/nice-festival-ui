@@ -24,6 +24,7 @@
     text-align: center;
     overflow: hidden;
     box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, .2);
+    font-size: 16px;
 }
 
 .signup h1{
@@ -45,6 +46,21 @@
     border: none;
     border-radius: 10px;
     /* background: #A61C3C; */
+    
+}
+.signup textarea {
+    display: block;
+    width: 100%;
+    padding: 0 16px;
+    height: 100px;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    /* border: .5px solid #1CC676; */
+    border: none;
+    border-radius: 10px;
+    /* background: #A61C3C; */
+    resize: none;
     
 }
 .signup select {
@@ -80,26 +96,12 @@
 
 }
 
-/* ::placeholder{
-    color: #fff;
-} */
+
 
 .signup-btn:hover{
     transform: scale(0.96);
 }
 
-.signup a{
-    text-decoration: none;
-    color: #000;
-    font-size: 14px;
-    padding: 10px;
-    transition: 0.8s;
-    display: block;
-}
-
-.signup a:hover{
-    color: #fff;
-}
 
 ::placeholder{
     color: #000;
