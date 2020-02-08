@@ -9,6 +9,7 @@ import { VendorDashboardComponent } from './components/vendor-dashboard-componen
 import { VendorApplyComponent } from './components/vendor-apply-component/VendorApplyComponent';
 import { PerformerApplyComponent } from './components/peformer-apply-component/PerformerApplyComponent';
 import { PerformerDashboardComponent } from './components/performer-dashboard-component/PerformerDashboardComponent';
+import { ContactFormComponent } from './components/contact-form-component/ContactFormComponent';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Switch>
           <Route path="/login" component={LoginComponent} />
           <Route path="/register" component={RegisterComponent} />
+          <Route path="/inquiry" component={ContactFormComponent} />
           <Route path="/customer" component={CustomerDashboardComponent} />
           <Route path="/vendor" component={VendorDashboardComponent} />
           <Route path="/ven-apply" component={VendorApplyComponent} />

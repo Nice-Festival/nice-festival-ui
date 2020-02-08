@@ -15,8 +15,8 @@ export class VendorApplyComponent extends React.Component {
                         Company Product:
                         <select className="txtb">
                             <option>Food</option>
-                            <option>T-shirts</option>
                             <option>Beverages</option>
+                            <option>Merchandise</option>
                         </select>
                         More Details:
                         <textarea className="txtb"></textarea>
