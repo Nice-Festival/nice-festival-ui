@@ -14,6 +14,8 @@ import ManagerDashboardComponent from './components/manager-dashboard-component/
 import ManagerInboxComponent from './components/manager-dashboard-component/ManagerInboxComponent';
 import ManagerPerformerListComponent from './components/manager-dashboard-component/ManagerPerformerComponent';
 import ManagerVendorComponent from './components/manager-dashboard-component/ManagerVendorComponent';
+import { MerchandiseComponent } from './components/merchandise-component/MerchandiseComponent';
+import { TicketsComponent } from './components/tickets-component/TicketsComponent';
 
 const App: React.FC = () => {
   return (
@@ -33,6 +35,8 @@ const App: React.FC = () => {
           <Route path="/man-performer" component={ManagerPerformerListComponent} />
           <Route path="/man-vendor" component={ManagerVendorComponent} />
           <Route path="/" component={HomeComponent} />
+          <Route path="/merchandise" component={MerchandiseComponent} />
+          <Route path="/tickets" component={TicketsComponent} />
         </Switch>
       </Router>
     </div>
