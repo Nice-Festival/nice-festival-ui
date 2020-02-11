@@ -40,8 +40,19 @@ export class LoginComponent extends React.Component{
     
     render(){
         return(
-            <div>
-                <h1>TEST</h1>
+            <div id="body">
+                <div className="signup">
+                    <div>
+                        <h1>Login</h1>
+                        Email:
+                        <input type="email" placeholder="jdoe@gmail.com" className="txtb" />
+                        Password:
+                        <input type="password" placeholder="Password" className="txtb" />
+                        <input type="submit" value="Create Account" className="signup-btn" />
+
+                        <a href="#">Forget password?</a>
+                    </div>
+                </div>
             </div>
         )
     }
