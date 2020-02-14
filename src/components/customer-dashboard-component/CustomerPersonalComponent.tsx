@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function CustomerDashboardComponent() {
+export default function CustomerPersonalComponent() {
     const classes = useStyles();
 
     return (
