@@ -123,7 +123,7 @@ export default function CustomerInboxComponent() {
           ))}
         </List> */}
             </Drawer>
-            <main className={classes.content}>
+            <main id="main" className={classes.content}>
                 <div className={classes.toolbar} />
                 <h1>Unread Messages: 2</h1>
        <Card className='card'>
