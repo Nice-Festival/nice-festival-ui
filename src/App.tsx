@@ -49,9 +49,9 @@ const App: React.FC = () => {
           <Route path="/man-inbox" component={ManagerInboxComponent} />
           <Route path="/man-performer" component={ManagerPerformerListComponent} />
           <Route path="/man-vendor" component={ManagerVendorComponent} />
-          <Route path="/" component={HomeComponent} />
           <Route path="/merchandise" component={MerchandiseComponent} />
           <Route path="/tickets" component={TicketsComponent} />
+          <Route path="/" component={HomeComponent} />
         </Switch>
       </Router>
     </div>
