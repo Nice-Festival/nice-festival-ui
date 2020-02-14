@@ -11,10 +11,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import EventAvailable from '@material-ui/icons/EventAvailable';
-import AddBoxIcon from '@material-ui/icons/AddBox';
+import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
 
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function CustomerDashboardComponent() {
+export default function PerformerInboxComponent() {
     const classes = useStyles();
 
     return (
@@ -60,7 +60,7 @@ export default function CustomerDashboardComponent() {
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                     <Typography variant="h6" noWrap>
-                        Customer Dashboard
+                        Performer Dashboard
           </Typography>
                 </Toolbar>
             </AppBar>
@@ -75,31 +75,31 @@ export default function CustomerDashboardComponent() {
                 <div className={classes.toolbar} />
                 <Divider />
                 <List>
-                    <Link to='/customer'>
+                    <Link to='/performer'>
                         <ListItem button key={'Home'}>
                             <ListItemIcon><HomeIcon /></ListItemIcon>
                             <ListItemText primary={'Home'} />
                         </ListItem>
                     </Link>
 
-                    <Link to="/cust-inbox">
+                    <Link to="/per-inbox">
                         <ListItem button key={'Inbox'}>
                             <ListItemIcon><InboxIcon /></ListItemIcon>
                             <ListItemText primary={'Inbox'} />
                         </ListItem>
                     </Link>
 
-                    <Link to="/personal-schedule">
+                    <Link to="/per-status">
                         <ListItem button key={'Vendor Applications'}>
-                            <ListItemIcon><EventAvailable/></ListItemIcon>
-                            <ListItemText primary={'Personal Schedule'} />
+                            <ListItemIcon><ContactMailIcon /></ListItemIcon>
+                            <ListItemText primary={'Performer Application Status'} />
                         </ListItem>
                     </Link>
 
-                    <Link to="/add-to-schedule">
+                    <Link to="/per-apply">
                         <ListItem button key={'Performer Applications'}>
-                            <ListItemIcon><AddBoxIcon /></ListItemIcon>
-                            <ListItemText primary={'Add To Schedule'} />
+                            <ListItemIcon><LibraryAddCheckIcon/></ListItemIcon>
+                            <ListItemText primary={'Apply'} />
                         </ListItem>
                     </Link>
 
@@ -121,7 +121,7 @@ export default function CustomerDashboardComponent() {
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1>Customer Dashboard</h1>
+                <h1>Performer Dashboard</h1>
             </main>
         </div>
     );
