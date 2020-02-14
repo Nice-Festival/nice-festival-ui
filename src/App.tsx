@@ -6,8 +6,9 @@ import { HomeComponent } from './components/home-component/HomeComponent';
 import { RegisterComponent } from './components/register-component/RegisterComponent';
 import CustomerDashboardComponent from './components/customer-dashboard-component/CustomerDashboardComponent';
 import VendorDashboardComponent  from './components/vendor-dashboard-component/VendorDashboardComponent';
-import { VendorApplyComponent } from './components/vendor-apply-component/VendorApplyComponent';
-// import { PerformerApplyComponent } from './components/peformer-apply-component/PerformerApplyComponent';
+import VendorApplyComponent  from './components/vendor-dashboard-component/VendorApplyComponent';
+import VendorInboxComponent  from './components/vendor-dashboard-component/VendorInboxComponent';
+import VendorApplicationComponent  from './components/vendor-dashboard-component/VendorApplicationComponent';
 import PerformerDashboardComponent  from './components/performer-dashboard-component/PerformerDashboardComponent';
 import { ContactFormComponent } from './components/contact-form-component/ContactFormComponent';
 import ManagerDashboardComponent from './components/manager-dashboard-component/ManagerDashboardComponent';
@@ -37,6 +38,8 @@ const App: React.FC = () => {
           <Route path="/cust-inbox" component={CustomerInboxComponent} />
           <Route path="/vendor" component={VendorDashboardComponent} />
           <Route path="/ven-apply" component={VendorApplyComponent} />
+          <Route path="/ven-status" component={VendorApplicationComponent} />
+          <Route path="/ven-inbox" component={VendorInboxComponent} />
           <Route path="/performer" component={PerformerDashboardComponent} />
           <Route path="/performer" component={PerformerDashboardComponent} />
           <Route path="/per-apply" component={PerformerApplyComponent} />

@@ -75,28 +75,28 @@ export default function VendorDashboardComponent() {
                 <div className={classes.toolbar} />
                 <Divider />
                 <List>
-                    <Link to='/dashboard'>
+                <Link to='/vendor'>
                         <ListItem button key={'Home'}>
                             <ListItemIcon><HomeIcon /></ListItemIcon>
                             <ListItemText primary={'Home'} />
                         </ListItem>
                     </Link>
 
-                    <Link to="/man-inbox">
+                    <Link to="/ven-inbox">
                         <ListItem button key={'Inbox'}>
                             <ListItemIcon><InboxIcon /></ListItemIcon>
                             <ListItemText primary={'Inbox'} />
                         </ListItem>
                     </Link>
 
-                    <Link to="/man-vendor">
+                    <Link to="/ven-status">
                         <ListItem button key={'Vendor Applications'}>
                             <ListItemIcon><ContactMailIcon /></ListItemIcon>
                             <ListItemText primary={'Vendor Application Status'} />
                         </ListItem>
                     </Link>
 
-                    <Link to="/man-performer">
+                    <Link to="/ven-apply">
                         <ListItem button key={'Performer Applications'}>
                             <ListItemIcon><LibraryAddCheckIcon/></ListItemIcon>
                             <ListItemText primary={'Apply'} />
