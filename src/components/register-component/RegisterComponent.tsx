@@ -1,5 +1,6 @@
 import React from 'react';
 import './register.css';
+import { Link } from 'react-router-dom';
 
 export class RegisterComponent extends React.Component {
 
@@ -25,7 +26,9 @@ export class RegisterComponent extends React.Component {
                         </select>
                         <input type="submit" value="Create Account" className="signup-btn" />
 
-                        <a href="#">Already Have an account? Sign in</a>
+                        <Link to="/login">
+                        <a href="#">Already Have an account? Sign in</a>                        
+                        </Link>
                     </div>
                 </div>
             </div>

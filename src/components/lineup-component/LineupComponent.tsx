@@ -1,5 +1,6 @@
 import React from 'react';
 import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
+import { NavbarComponent } from '../navbar-component/NavbarComponent';
 
 export class LineupComponent extends React.Component {
 
@@ -8,6 +9,7 @@ export class LineupComponent extends React.Component {
     return(
         <div>
      
+     <NavbarComponent />
 
 <ListGroup>
       <ListGroupItem active>

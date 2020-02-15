@@ -1,5 +1,6 @@
 import React, { SyntheticEvent } from 'react';
-
+import "./login.css";
+import { Link } from 'react-router-dom';
 // interface ILoginState {
 //     username: string
 //     password: string
@@ -10,7 +11,7 @@ import React, { SyntheticEvent } from 'react';
 //     loginMessage: string
 // }
 
-export class LoginComponent extends React.Component{
+export class LoginComponent extends React.Component {
     // constructor(props: any) {
     //     super(props)
     //     this.state = {
@@ -37,9 +38,9 @@ export class LoginComponent extends React.Component{
     //     event.preventDefault()
     //     this.props.updateCurrentUser(this.state.username, this.state,password)
     // }
-    
-    render(){
-        return(
+
+    render() {
+        return (
             <div id="body">
                 <div className="signup">
                     <div>
@@ -48,9 +49,11 @@ export class LoginComponent extends React.Component{
                         <input type="email" placeholder="jdoe@gmail.com" className="txtb" />
                         Password:
                         <input type="password" placeholder="Password" className="txtb" />
-                        <input type="submit" value="Create Account" className="signup-btn" />
+                        <input type="submit" value="Login" className="signup-btn" />
 
-                        <a href="#">Forget password?</a>
+                        <Link to="/register">
+                            <a href="#">Don't Have an Account? Sign up</a>
+                        </Link>
                     </div>
                 </div>
             </div>

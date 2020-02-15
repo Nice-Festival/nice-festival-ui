@@ -6,10 +6,10 @@
 #body{
     margin: 0 !important;
     padding: 0 !important;
-    background: #F68E5F !important;
+    background: #F68E5F;
+
     height: 100vh;
     font-size: .8rem;
-    min-height: 120vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,6 +24,7 @@
     text-align: center;
     overflow: hidden;
     box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, .2);
+    margin-bottom: 4rem;
 }
 
 .signup h1{

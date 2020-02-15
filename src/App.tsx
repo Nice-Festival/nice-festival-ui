@@ -30,7 +30,6 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Router>
-        <NavbarComponent />
         <Switch>
           <Route path="/login" component={LoginComponent} />
           <Route path="/register" component={RegisterComponent} />
