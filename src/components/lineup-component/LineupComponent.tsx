@@ -2,6 +2,7 @@ import React from 'react';
 import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
 import { NavbarComponent } from '../navbar-component/NavbarComponent';
 import "./lineup.css"
+import { FooterComponent } from '../footer/FooterComponen';
 
 export class LineupComponent extends React.Component {
 
@@ -81,7 +82,7 @@ export class LineupComponent extends React.Component {
         </ListGroupItemText>
           </ListGroupItem>
         </ListGroup>
-
+      <FooterComponent/>
       </div>
     );
 

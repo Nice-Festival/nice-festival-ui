@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import {
   Navbar,
   Nav,
-  NavItem,
-  Container
-
+  NavItem
 
 } from 'reactstrap';
 import "./navbar.css";

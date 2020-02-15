@@ -2,6 +2,7 @@ import React, { SyntheticEvent } from 'react';
 import "./login.css";
 import { Link } from 'react-router-dom';
 import { NavbarComponent } from '../navbar-component/NavbarComponent';
+import { FooterComponent } from '../footer/FooterComponen';
 // interface ILoginState {
 //     username: string
 //     password: string
@@ -44,7 +45,7 @@ export class LoginComponent extends React.Component {
         return (
             <div id="content">
                 <NavbarComponent id="nav" />
-                <div id="body">
+                <div id="login-body">
                     <div className="login">
                         <div>
                             <h1>Login</h1>
@@ -60,6 +61,7 @@ export class LoginComponent extends React.Component {
                         </div>
                     </div>
                 </div>
+                <FooterComponent/>
             </div>
         )
     }

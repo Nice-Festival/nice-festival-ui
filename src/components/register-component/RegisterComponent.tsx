@@ -2,6 +2,7 @@ import React from 'react';
 import './register.css';
 import { Link } from 'react-router-dom';
 import { NavbarComponent } from '../navbar-component/NavbarComponent';
+import { FooterComponent } from '../footer/FooterComponen';
 
 export class RegisterComponent extends React.Component {
 
@@ -35,6 +36,7 @@ export class RegisterComponent extends React.Component {
                         </div>
                     </div>
                 </div>
+                <FooterComponent/>
             </div>
         )
     }
