@@ -3,6 +3,10 @@
     color: #000;
 }
 
+#nav{
+   
+}
+
 #body{
     margin: 0 !important;
     padding: 0 !important;
@@ -15,7 +19,7 @@
     align-items: center;
 }
 
-.signup{
+.login{
     background: #A61C3C;
     width: 40vw;
     padding: 20px;
@@ -24,17 +28,17 @@
     text-align: center;
     overflow: hidden;
     box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, .2);
-    margin-bottom: 4rem;
+    margin-bottom: 14rem;
 }
 
-.signup h1{
+.login h1{
     font-weight: 300;
     margin-top: 100px;
     color: #000;
     font-size: 40px;
 }
 
-.signup input {
+.login input {
     display: block;
     width: 100%;
     padding: 0 16px;
@@ -48,7 +52,7 @@
     /* background: #A61C3C; */
     
 }
-.signup select {
+.login select {
     display: block;
     width: 100%;
     padding: 0 16px;
@@ -90,7 +94,7 @@
     transform: scale(0.96);
 }
 
-.signup a{
+.login a{
     text-decoration: none;
     color: #000;
     font-size: 14px;
@@ -99,7 +103,7 @@
     display: block;
 }
 
-.signup a:hover{
+.login a:hover{
     color: #fff;
 }
 
@@ -111,7 +115,7 @@
     #body{
         height: 130vh;
     }
-    .signup{
+    .login{
         width: 65vw;
     }
 }

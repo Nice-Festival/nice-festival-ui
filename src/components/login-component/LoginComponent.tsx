@@ -1,6 +1,7 @@
 import React, { SyntheticEvent } from 'react';
 import "./login.css";
 import { Link } from 'react-router-dom';
+import { NavbarComponent } from '../navbar-component/NavbarComponent';
 // interface ILoginState {
 //     username: string
 //     password: string
@@ -41,19 +42,22 @@ export class LoginComponent extends React.Component {
 
     render() {
         return (
-            <div id="body">
-                <div className="signup">
-                    <div>
-                        <h1>Login</h1>
-                        Email:
+            <div id="content">
+                <NavbarComponent id="nav" />
+                <div id="body">
+                    <div className="login">
+                        <div>
+                            <h1>Login</h1>
+                            Email:
                         <input type="email" placeholder="jdoe@gmail.com" className="txtb" />
-                        Password:
+                            Password:
                         <input type="password" placeholder="Password" className="txtb" />
-                        <input type="submit" value="Login" className="signup-btn" />
+                            <input type="submit" value="Login" className="signup-btn" />
 
-                        <Link to="/register">
-                            <a href="#">Don't Have an Account? Sign up</a>
-                        </Link>
+                            <Link to="/register">
+                                <a href="#">Don't Have an Account? Sign up</a>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
