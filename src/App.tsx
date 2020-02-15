@@ -23,11 +23,14 @@ import CustomerInboxComponent from './components/customer-dashboard-component/Cu
 import PerformerInboxComponent from './components/performer-dashboard-component/PerformerInboxComponent';
 import PerformerApplyComponent from './components/performer-dashboard-component/PerformerApplyComponent';
 import PerformerApplicationComponent from './components/performer-dashboard-component/PerformerApplicationComponent';
+import { LineupComponent } from './components/lineup-component/LineupComponent';
+import { NavbarComponent } from './components/navbar-component/NavbarComponent';
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <Router>
+        <NavbarComponent />
         <Switch>
           <Route path="/login" component={LoginComponent} />
           <Route path="/register" component={RegisterComponent} />
@@ -51,6 +54,7 @@ const App: React.FC = () => {
           <Route path="/man-vendor" component={ManagerVendorComponent} />
           <Route path="/merchandise" component={MerchandiseComponent} />
           <Route path="/tickets" component={TicketsComponent} />
+          <Route path="/lineup" component={LineupComponent} />
           <Route path="/" component={HomeComponent} />
         </Switch>
       </Router>
