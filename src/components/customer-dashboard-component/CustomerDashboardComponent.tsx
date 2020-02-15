@@ -11,18 +11,21 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import ContactMailIcon from '@material-ui/icons/ContactMail';
-import EmailRounded from '@material-ui/icons/EmailRounded';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import EventAvailable from '@material-ui/icons/EventAvailable';
-import Fab from '@material-ui/core/Fab';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
 import { GoogleMap, LoadScript } from '@react-google-maps/api'
 import { Container } from '@material-ui/core';
 import "./customer.css";
-
+import FabComponent from '../fab/FabComponent';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
 
 
 const drawerWidth = 240;
@@ -40,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: '#A61C3C',
 
         },
-        
+
         drawer: {
             width: drawerWidth,
             flexShrink: 0,
@@ -57,6 +60,8 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     }),
 );
+
+
 
 export default function CustomerDashboardComponent() {
     const classes = useStyles();
@@ -128,26 +133,52 @@ export default function CustomerDashboardComponent() {
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <Fab id="fab" aria-label="add">
-                    <EmailRounded id="icon" />
-                </Fab>
+                <FabComponent />
                 <Container id="mainContent" maxWidth="md">
-                <p id="locationTitle">Festival Location</p>
-                <LoadScript id="script-loader" googleMapsApiKey={process.env.API_URL}>
-                    <GoogleMap id='example-map'
-                    mapContainerStyle={{
-                        height: "400px",
-                        width: "800px"
-                      }}
-                      zoom={7}
-                      center={{
-                        lat: 29.9933929,
-                        lng: -90.1003796
-                      }}
-                    >
-
-                    </GoogleMap>
-                </LoadScript>
+                    <Card className="">
+                        <CardActionArea>
+                            <CardMedia
+                                component="img"
+                                alt="Contemplative Reptile"
+                                height="140"
+                                image="/static/images/cards/contemplative-reptile.jpg"
+                                title="Contemplative Reptile"
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    Lizard
+          </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                                    across all continents except Antarctica
+          </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                        <CardActions>
+                            <Button size="small" color="primary">
+                                Share
+        </Button>
+                            <Button size="small" color="primary">
+                                Learn More
+        </Button>
+                        </CardActions>
+                    </Card>
+                    <p id="locationTitle">Festival Location</p>
+                    <p>Address: 1 Palm Dr, New Orleans, LA 70124</p>
+                    <LoadScript id="script-loader" googleMapsApiKey={process.env.REACT_APP_API_KEY}>
+                        <GoogleMap id='example-map'
+                            mapContainerStyle={{
+                                height: "400px",
+                                width: "800px"
+                            }}
+                            zoom={17}
+                            center={{
+                                lat: 29.9933929,
+                                lng: -90.1003796
+                            }}
+                        >
+                        </GoogleMap>
+                    </LoadScript>
                 </Container>
             </main>
         </div>

@@ -1,0 +1,19 @@
+#fab{
+    position: fixed;
+    top: 90%;
+    left:95%;
+    background: #A61C3C;
+    transition: ease-in 0.8s;
+}
+
+#fab:hover{
+    background: #F68E5F;
+}
+textarea {
+    height: 2rem;
+    width: 30vw;
+}
+
+#message-head-title {
+
+}

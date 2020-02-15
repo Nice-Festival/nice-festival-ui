@@ -14,7 +14,6 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
-import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
 
 

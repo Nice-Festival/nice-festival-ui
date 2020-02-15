@@ -11,11 +11,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
-import HomeIcon from '@material-ui/icons/Home';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import EmailIcon from '@material-ui/icons/Email'

@@ -26,6 +26,7 @@ import PerformerApplicationComponent from './components/performer-dashboard-comp
 import { LineupComponent } from './components/lineup-component/LineupComponent';
 import { NavbarComponent } from './components/navbar-component/NavbarComponent';
 
+
 const App: React.FC = () => {
   return (
     <div className="App">
