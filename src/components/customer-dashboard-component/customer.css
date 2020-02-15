@@ -12,3 +12,27 @@
     margin-top: .7rem;
     width: 60vw;
 }
+
+#fab{
+    position: fixed;
+    top: 90%;
+    left:95%;
+    background: #A61C3C;
+    transition: ease-in 0.8s;
+}
+
+#fab:hover{
+    background: #F68E5F;
+}
+
+#mainContent{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Raleway', sans-serif;
+}
+
+#locationTitle{
+    font-size: 1.7rem;
+}

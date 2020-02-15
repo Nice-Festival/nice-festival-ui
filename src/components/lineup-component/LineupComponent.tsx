@@ -53,33 +53,33 @@ export class LineupComponent extends React.Component {
             <br></br>
             <br></br>
             <ListGroupItemHeading>Catering Unlimited</ListGroupItemHeading>
-            <ListGroupItemText>
+            {/* <ListGroupItemText>
               Cajun Jambalaya ($7) and fried chicken dark meat 2-piece ($6), white meat 2-piece ($7), combo dark meat ($10), white meat ($11)
-        </ListGroupItemText>
+        </ListGroupItemText> */}
           </ListGroupItem>
           <ListGroupItem>
             <ListGroupItemHeading>Joyce’s</ListGroupItemHeading>
-            <ListGroupItemText>
+            {/* <ListGroupItemText>
               Lemonade ($3), Fruit Salad ($4)
-        </ListGroupItemText>
+        </ListGroupItemText> */}
           </ListGroupItem>
           <ListGroupItem>
             <ListGroupItemHeading>Stuf Hapn Event Catering</ListGroupItemHeading>
-            <ListGroupItemText>
+            {/* <ListGroupItemText>
               Creole Stuffed Crab (with potato salad) ($9), Catfish
-        Amandine (with potato salad) ($9), Potato Salad ($3); Combo ($12)</ListGroupItemText>
+        Amandine (with potato salad) ($9), Potato Salad ($3); Combo ($12)</ListGroupItemText> */}
           </ListGroupItem>
           <ListGroupItem>
             <ListGroupItemHeading>Jamila’s Cafe</ListGroupItemHeading>
-            <ListGroupItemText>
+            {/* <ListGroupItemText>
               Spinach, crawfish and zucchini bisque ($7), Merguez po-boy ($7)
-        </ListGroupItemText>
+        </ListGroupItemText> */}
           </ListGroupItem>
           <ListGroupItem>
             <ListGroupItemHeading>Mr. Williams Pies</ListGroupItemHeading>
-            <ListGroupItemText>
+            {/* <ListGroupItemText>
               Sweet potato, coconut ($5) and pecan ($6) pies
-        </ListGroupItemText>
+        </ListGroupItemText> */}
           </ListGroupItem>
         </ListGroup>
       <FooterComponent/>
