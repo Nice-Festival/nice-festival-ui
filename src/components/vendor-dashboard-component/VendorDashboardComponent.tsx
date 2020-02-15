@@ -75,12 +75,12 @@ export default function VendorDashboardComponent() {
                 <div className={classes.toolbar} />
                 <Divider />
                 <List>
-                <Link to='/vendor'>
+                {/* <Link to='/vendor'>
                         <ListItem button key={'Home'}>
                             <ListItemIcon><HomeIcon /></ListItemIcon>
                             <ListItemText primary={'Home'} />
                         </ListItem>
-                    </Link>
+                    </Link> */}
 
                     <Link to="/ven-inbox">
                         <ListItem button key={'Inbox'}>

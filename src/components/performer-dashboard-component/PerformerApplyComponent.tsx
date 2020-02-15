@@ -76,12 +76,12 @@ export default function PerformerApplyComponent() {
                 <div className={classes.toolbar} />
                 <Divider />
                 <List>
-                    <Link to='/performer'>
+                    {/* <Link to='/performer'>
                         <ListItem button key={'Home'}>
                             <ListItemIcon><HomeIcon /></ListItemIcon>
                             <ListItemText primary={'Home'} />
                         </ListItem>
-                    </Link>
+                    </Link> */}
 
                     <Link to="/per-inbox">
                         <ListItem button key={'Inbox'}>
