@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { registerReducer } from "./register-reducer";
+import { loginReducer } from "./login-reducer";
 
 export interface IUserState {
     currentUser:any
@@ -10,7 +11,7 @@ export interface IRegisterState {
 }
 
 export interface IState {
-    // userState : IUserState
+    userState : IUserState
     // pokemonState: IPokemonState
     // clickerState: IClickerState
     // starWarsState:IStarWarsState
@@ -27,5 +28,6 @@ export const state = combineReducers<IState>({
     // clickerState:clickerReducer,
     // starWarsState:starWarsReducer,
     // t3State:ticTacToeReducer
-    registerState:registerReducer
+    registerState:registerReducer,
+    userState: loginReducer
 })

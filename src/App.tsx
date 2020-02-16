@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { LoginComponent } from './components/login-component/LoginComponent';
+import LoginComponent  from './components/login-component/LoginContainer';
 import { HomeComponent } from './components/home-component/HomeComponent';
 import {RegisterComponent}  from './components/register-component/RegisterComponent';
 import CustomerDashboardComponent from './components/customer-dashboard-component/CustomerDashboardComponent';
