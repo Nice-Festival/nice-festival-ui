@@ -21,6 +21,25 @@
     transition: ease-in 0.8s;
 }
 
+.cardContent{
+    width: 50vw;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.ticket-info{
+    font-size: 20rem;
+    margin-bottom: 2rem;
+}
+.quantity{
+
+}
+.shipping{
+
+}
+
 #fab:hover{
     background: #F68E5F;
 }

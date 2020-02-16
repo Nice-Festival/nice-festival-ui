@@ -21,11 +21,8 @@ import { Container } from '@material-ui/core';
 import "./customer.css";
 import FabComponent from '../fab/FabComponent';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+
 
 
 const drawerWidth = 240;
@@ -135,35 +132,26 @@ export default function CustomerDashboardComponent() {
                 <div className={classes.toolbar} />
                 <FabComponent />
                 <Container id="mainContent" maxWidth="md">
-                    <Card className="">
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                alt="Contemplative Reptile"
-                                height="140"
-                                image="/static/images/cards/contemplative-reptile.jpg"
-                                title="Contemplative Reptile"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    Lizard
-          </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                    across all continents except Antarctica
-          </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                                Share
-        </Button>
-                            <Button size="small" color="primary">
-                                Learn More
-        </Button>
-                        </CardActions>
+                    <Card className="cardContent">
+                        <CardContent>
+                            <Typography className="ticket-info" color="textSecondary" gutterBottom>
+                                Customer Ticket Info
+                            </Typography>
+                            <Typography className="quantity" variant="h5" component="h2">
+                                Quantity: 0
+                            </Typography>
+                            <Typography className="shipping" color="textSecondary">
+                                Shipping Status: No Ticket Purchased
+                            </Typography>
+                            {/* <Typography variant="body2" component="p">
+                                well meaning and kindly.
+                                <br />
+                            </Typography> */}
+                        </CardContent>
                     </Card>
+                    <Divider/>
                     <p id="locationTitle">Festival Location</p>
+                    <Divider/>
                     <p>Address: 1 Palm Dr, New Orleans, LA 70124</p>
                     <LoadScript id="script-loader" googleMapsApiKey={process.env.REACT_APP_API_KEY}>
                         <GoogleMap id='example-map'
