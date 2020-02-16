@@ -1,6 +1,6 @@
 import React, { SyntheticEvent } from 'react';
 import "./login.css";
-import { Link } from 'react-router-dom';
+import { Link,  withRouter } from 'react-router-dom';
 import { NavbarComponent } from '../navbar-component/NavbarComponent';
 import { FooterComponent } from '../footer/FooterComponen';
 interface ILoginState {
@@ -9,6 +9,7 @@ interface ILoginState {
 }
 
 interface ILoginProps {
+    currentUser:any,
     updateCurrentUser: (u:string, p:string) => void
     loginMessage: string
 }
@@ -38,8 +39,26 @@ export class LoginComponent extends React.Component<ILoginProps,ILoginState> {
 
     submitLogin = async (event: SyntheticEvent) => {
         event.preventDefault()
-        this.props.updateCurrentUser(this.state.username, this.state.password)
+        await this.props.updateCurrentUser(this.state.username, this.state.password)
+        console.log(this.props.currentUser);
+        if(this.props.currentUser === null){
+            console.log("You are not a user");
+        }
+        else {
+            if(this.props.currentUser["role"] === "CUSTOMER"){
+                console.log("Customer");
+            }
+            else if(this.props.currentUser["role"] === "VENDOR"){
+                console.log("Vendor");
 
+            }
+            else if(this.props.currentUser["role"] === "MANAGER"){
+                console.log("Artist");
+            }
+            else if(this.props.currentUser["role"] === "ARTIST"){
+
+            }
+        }
     }
 
     render() {
