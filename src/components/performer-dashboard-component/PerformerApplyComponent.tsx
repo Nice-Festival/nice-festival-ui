@@ -18,6 +18,7 @@ import './performer-apply.css';
 import { Link } from 'react-router-dom';
 import { apiArtistApply } from '../remote/artist-apply';
 import {store} from '../../Store';
+import { apiGetArtist } from '../remote/get-artist';
 
 
 
@@ -58,8 +59,13 @@ export default function PerformerApplyComponent() {
     let [details, setDetails] = useState("");
     const appState = store.getState();
     let currentUser = appState.userState.currentUser;
-    // useEffect(() => {
-    //   });
+    let applied = false;
+    let artist = "";
+    useEffect(() => {
+            apiGetArtist().then(data => {
+                console.log(data);
+            })
+      });
 
     const submitApplication = () => {
         apiArtistApply(currentUser, details)
