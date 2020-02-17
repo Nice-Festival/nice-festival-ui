@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,13 +11,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
-import HomeIcon from '@material-ui/icons/Home';
 import './performer-apply.css';
 import { Link } from 'react-router-dom';
+import { apiArtistApply } from '../remote/artist-apply';
+import {store} from '../../Store';
+
 
 
 const drawerWidth = 240;
@@ -54,7 +55,15 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function PerformerApplyComponent() {
     const classes = useStyles();
+    let [details, setDetails] = useState("");
+    const appState = store.getState();
+    let currentUser = appState.userState.currentUser;
+    // useEffect(() => {
+    //   });
 
+    const submitApplication = () => {
+        apiArtistApply(currentUser, details)
+    }
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -125,44 +134,17 @@ export default function PerformerApplyComponent() {
                 <div className="signup">
                     <div>
                         <h1>Performer Application</h1>
-                        Performer Name:
-                        <input type="text" placeholder="Kaskade" className="txtb" />
-                        Music Genre:
-                        <select className="txtb">
-                            <option>Trance</option>
-                            <option>Rap</option>
-                            <option>Hip Hop</option>
-                            <option>Electro House</option>
-                            <option>DnB</option>
-                            <option>Pop</option>
-                            <option>R&B</option>
-                            <option>Techno</option>
-                        </select>                        
-                        Performance Day:
-                        <select className="txtb">
-                            <option>Saturday</option>
-                            <option>Sunday</option>
-                        </select>
-                        Desired Time Slot:
-                        <select className="txtb">
-                            <option>2:00pm</option>
-                            <option>3:00pm</option>
-                            <option>4:00pm</option>
-                            <option>5:00pm</option>
-                            <option>6:00pm</option>
-                            <option>7:00pm</option>
-                            <option>8:00pm</option>
-                            <option>9:00pm</option>
-                            <option>10:00pm</option>
-                            <option>11:00pm</option>
-                            <option>12:00pm</option>
-                            <option>1:00am</option>
-                            <option>2:00am</option>
-                            <option>3:00am</option>
-                        </select>
-                        More Details:
-                        <textarea className="txtb"></textarea>
-                        <input type="submit" value="Apply" className="signup-btn" />
+                        Details:
+                        <textarea 
+                        className="txtb"
+                        onChange={(e) => setDetails(e.target.value)}
+                        ></textarea>
+                        <input 
+                        type="submit" 
+                        value="Apply" 
+                        className="signup-btn"
+                        onClick={submitApplication}
+                         />
                     </div>
                 </div>
             </div>

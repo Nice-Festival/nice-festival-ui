@@ -14,7 +14,7 @@ interface ILoginProps {
     loginMessage: string
 }
 
-export class LoginComponent extends React.Component<ILoginProps,ILoginState> {
+export class LoginComponent extends React.Component<any,ILoginState> {
     constructor(props: any) {
         super(props)
         this.state = {
@@ -47,15 +47,18 @@ export class LoginComponent extends React.Component<ILoginProps,ILoginState> {
         else {
             if(this.props.currentUser["role"] === "CUSTOMER"){
                 console.log("Customer");
+                this.props.history.push("/customer")
             }
             else if(this.props.currentUser["role"] === "VENDOR"){
                 console.log("Vendor");
+                this.props.history.push("/vendor")
 
             }
             else if(this.props.currentUser["role"] === "MANAGER"){
-                console.log("Artist");
             }
             else if(this.props.currentUser["role"] === "ARTIST"){
+                console.log("Artist");
+                this.props.history.push("/performer")
 
             }
         }

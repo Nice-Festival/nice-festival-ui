@@ -21,7 +21,7 @@ import CustomerAddComponent from './components/customer-dashboard-component/Cust
 import CustomerPersonalComponent from './components/customer-dashboard-component/CustomerPersonalComponent';
 import CustomerInboxComponent from './components/customer-dashboard-component/CustomerInboxComponent';
 import PerformerInboxComponent from './components/performer-dashboard-component/PerformerInboxComponent';
-import PerformerApplyComponent from './components/performer-dashboard-component/PerformerApplyComponent';
+import PerformerApplyComponent from './components/performer-dashboard-component/PerformerApplyContainer';
 import PerformerApplicationComponent from './components/performer-dashboard-component/PerformerApplicationComponent';
 import { LineupComponent } from './components/lineup-component/LineupComponent';
 import { Provider } from 'react-redux';
