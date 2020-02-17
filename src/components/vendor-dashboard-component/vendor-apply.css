@@ -4,11 +4,13 @@
 }
 
 #body{
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #F68E5F !important;
+    margin: 0;
+    padding: 0;
+    /* margin-top: 2rem; */
+    background: #FAFAFA;
+    height: 100%;
     font-size: .8rem;
-    min-height: 130vh !important;
+    min-height: 120vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +25,7 @@
     text-align: center;
     overflow: hidden;
     box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, .2);
-    margin-top: 3rem;
+    font-size: 16px;
 }
 
 .signup h1{
@@ -47,6 +49,21 @@
     /* background: #A61C3C; */
     
 }
+.signup textarea {
+    display: block;
+    width: 100%;
+    padding: 0 16px;
+    height: 100px;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    /* border: .5px solid #1CC676; */
+    border: none;
+    border-radius: 10px;
+    /* background: #A61C3C; */
+    resize: none;
+    
+}
 .signup select {
     display: block;
     width: 100%;
@@ -55,10 +72,10 @@
     text-align: center;
     box-sizing: border-box;
     outline: none;
-    border: none;
     /* border: .5px solid #1CC676; */
     border-radius: 10px;
     /* background: #45B69C; */
+    border: none;
 }
 
 
@@ -81,26 +98,12 @@
 
 }
 
-/* ::placeholder{
-    color: #fff;
-} */
+
 
 .signup-btn:hover{
     transform: scale(0.96);
 }
 
-#link{
-    text-decoration: none;
-    color: #000;
-    font-size: 14px;
-    padding: 10px;
-    transition: 0.8s;
-    display: block;
-}
-
-#link:hover{
-    color: #fff;
-}
 
 ::placeholder{
     color: #000;

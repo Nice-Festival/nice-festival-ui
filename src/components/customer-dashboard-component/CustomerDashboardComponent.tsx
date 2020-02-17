@@ -11,12 +11,18 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import ContactMailIcon from '@material-ui/icons/ContactMail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import EventAvailable from '@material-ui/icons/EventAvailable';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
+import { GoogleMap, LoadScript } from '@react-google-maps/api'
+import { Container } from '@material-ui/core';
+import "./customer.css";
+import FabComponent from '../fab/FabComponent';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+
 
 
 const drawerWidth = 240;
@@ -34,6 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: '#A61C3C',
 
         },
+
         drawer: {
             width: drawerWidth,
             flexShrink: 0,
@@ -50,6 +57,8 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     }),
 );
+
+
 
 export default function CustomerDashboardComponent() {
     const classes = useStyles();
@@ -91,7 +100,7 @@ export default function CustomerDashboardComponent() {
 
                     <Link to="/personal-schedule">
                         <ListItem button key={'Vendor Applications'}>
-                            <ListItemIcon><EventAvailable/></ListItemIcon>
+                            <ListItemIcon><EventAvailable /></ListItemIcon>
                             <ListItemText primary={'Personal Schedule'} />
                         </ListItem>
                     </Link>
@@ -121,7 +130,44 @@ export default function CustomerDashboardComponent() {
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1>Customer Dashboard</h1>
+                <FabComponent />
+                <Container id="mainContent" maxWidth="md">
+                    <Card className="cardContent">
+                        <CardContent>
+                            <Typography className="ticket-info" color="textSecondary" gutterBottom>
+                                Customer Ticket Info
+                            </Typography>
+                            <Typography className="quantity" variant="h5" component="h2">
+                                Quantity: 0
+                            </Typography>
+                            <Typography className="shipping" color="textSecondary">
+                                Shipping Status: No Ticket Purchased
+                            </Typography>
+                            {/* <Typography variant="body2" component="p">
+                                well meaning and kindly.
+                                <br />
+                            </Typography> */}
+                        </CardContent>
+                    </Card>
+                    <Divider/>
+                    <p id="locationTitle">Festival Location</p>
+                    <Divider/>
+                    <p>Address: 1 Palm Dr, New Orleans, LA 70124</p>
+                    <LoadScript id="script-loader" googleMapsApiKey={process.env.REACT_APP_API_KEY}>
+                        <GoogleMap id='example-map'
+                            mapContainerStyle={{
+                                height: "400px",
+                                width: "800px"
+                            }}
+                            zoom={17}
+                            center={{
+                                lat: 29.9933929,
+                                lng: -90.1003796
+                            }}
+                        >
+                        </GoogleMap>
+                    </LoadScript>
+                </Container>
             </main>
         </div>
     );

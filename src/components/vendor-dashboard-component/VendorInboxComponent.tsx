@@ -11,10 +11,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import HomeIcon from '@material-ui/icons/Home';
+import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import EmailIcon from '@material-ui/icons/Email'
+import FolderOpenIcon from '@material-ui/icons/FolderOpen';
+import './vendor-inbox.css';
 import { Link } from 'react-router-dom';
 
 
@@ -50,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function ManagerDashboardComponent() {
+export default function VendorInboxComponent() {
     const classes = useStyles();
 
     return (
@@ -59,7 +63,7 @@ export default function ManagerDashboardComponent() {
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                     <Typography variant="h6" noWrap>
-                        Manager Dashboard
+                        Vendor Dashboard
           </Typography>
                 </Toolbar>
             </AppBar>
@@ -74,31 +78,31 @@ export default function ManagerDashboardComponent() {
                 <div className={classes.toolbar} />
                 <Divider />
                 <List>
-                    {/* <Link to='/manager'>
+                {/* <Link to='/vendor'>
                         <ListItem button key={'Home'}>
                             <ListItemIcon><HomeIcon /></ListItemIcon>
                             <ListItemText primary={'Home'} />
                         </ListItem>
                     </Link> */}
 
-                    <Link to="/man-inbox">
+                    <Link to="/ven-inbox">
                         <ListItem button key={'Inbox'}>
                             <ListItemIcon><InboxIcon /></ListItemIcon>
                             <ListItemText primary={'Inbox'} />
                         </ListItem>
                     </Link>
 
-                    <Link to="/man-vendor">
+                    <Link to="/ven-status">
                         <ListItem button key={'Vendor Applications'}>
-                            <ListItemIcon><MailIcon /></ListItemIcon>
-                            <ListItemText primary={'Vendor Applications'} />
+                            <ListItemIcon><ContactMailIcon /></ListItemIcon>
+                            <ListItemText primary={'Vendor Application Status'} />
                         </ListItem>
                     </Link>
 
-                    <Link to="/man-performer">
+                    <Link to="/ven-apply">
                         <ListItem button key={'Performer Applications'}>
-                            <ListItemIcon><ContactMailIcon /></ListItemIcon>
-                            <ListItemText primary={'Performer Applications'} />
+                            <ListItemIcon><LibraryAddCheckIcon/></ListItemIcon>
+                            <ListItemText primary={'Apply'} />
                         </ListItem>
                     </Link>
 
@@ -118,9 +122,65 @@ export default function ManagerDashboardComponent() {
           ))}
         </List> */}
             </Drawer>
-            <main className={classes.content}>
+            <main id="main" className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1>Manager Dashboard</h1>
+                <h1>Unread Messages: 2</h1>
+       <Card className='card'>
+       <CardContent>
+          <EmailIcon/>
+          <Typography component="h5" variant="h5">
+            Subject: Ticket Price
+          </Typography>
+          <Typography variant="subtitle1" color="textSecondary">
+            From: James Smith
+          </Typography>
+        </CardContent>
+       </Card>
+       <Divider/>
+       <Card className='card'>
+       <CardContent>
+          <FolderOpenIcon/>
+          <Typography component="h5" variant="h5">
+            Subject: Venue
+          </Typography>
+          <Typography variant="subtitle1" color="textSecondary">
+            From: Harold Wilson
+          </Typography>
+        </CardContent>
+       </Card>
+       <Card className='card'>
+       <CardContent>
+          <FolderOpenIcon/>
+          <Typography component="h5" variant="h5">
+            Subject: Merchandise
+          </Typography>
+          <Typography variant="subtitle1" color="textSecondary">
+            From: Jenny Taft
+          </Typography>
+        </CardContent>
+       </Card>
+       <Card className='card'>
+       <CardContent>
+          <EmailIcon/>
+          <Typography component="h5" variant="h5">
+            Subject: Performers
+          </Typography>
+          <Typography variant="subtitle1" color="textSecondary">
+            From: Sally Wilson
+          </Typography>
+        </CardContent>
+       </Card>
+       <Card className='card'>
+       <CardContent>
+          <FolderOpenIcon/>
+          <Typography component="h5" variant="h5">
+            Subject: Food & Beverages
+          </Typography>
+          <Typography variant="subtitle1" color="textSecondary">
+            From: Danny Brown
+          </Typography>
+        </CardContent>
+       </Card>
             </main>
         </div>
     );

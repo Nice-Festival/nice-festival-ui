@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,12 +11,15 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
-import HomeIcon from '@material-ui/icons/Home';
+import './performer-apply.css';
 import { Link } from 'react-router-dom';
+import { apiArtistApply } from '../remote/artist-apply';
+import {store} from '../../Store';
+import { apiGetArtist } from '../remote/get-artist';
+
 
 
 const drawerWidth = 240;
@@ -53,7 +56,31 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function PerformerApplyComponent() {
     const classes = useStyles();
+    let [details, setDetails] = useState("");
+    const appState = store.getState();
+    let currentUser = appState.userState.currentUser;
+    let applied = false;
+    
+    useEffect(() => {
+           
+      });
 
+    const submitApplication = async () => {
+        let data = await apiGetArtist();
+        let artists:any = data;
+        console.log(artists);
+        // artists.map((u:any) => {
+        //     if(u["user"]["id"] === currentUser["id"]){
+        //         console.log("can't apply again");
+        //         applied = true;
+        //     }
+        // })
+        apiArtistApply(currentUser, details)
+        // if(applied = false){
+            
+        // }
+
+    }
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -75,12 +102,12 @@ export default function PerformerApplyComponent() {
                 <div className={classes.toolbar} />
                 <Divider />
                 <List>
-                    <Link to='/performer'>
+                    {/* <Link to='/performer'>
                         <ListItem button key={'Home'}>
                             <ListItemIcon><HomeIcon /></ListItemIcon>
                             <ListItemText primary={'Home'} />
                         </ListItem>
-                    </Link>
+                    </Link> */}
 
                     <Link to="/per-inbox">
                         <ListItem button key={'Inbox'}>
@@ -120,8 +147,24 @@ export default function PerformerApplyComponent() {
         </List> */}
             </Drawer>
             <main className={classes.content}>
-                <div className={classes.toolbar} />
-                <h1>Performer Dashboard</h1>
+            <div id="body">
+                <div className="signup">
+                    <div>
+                        <h1>Performer Application</h1>
+                        Details:
+                        <textarea 
+                        className="txtb"
+                        onChange={(e) => setDetails(e.target.value)}
+                        ></textarea>
+                        <input 
+                        type="submit" 
+                        value="Apply" 
+                        className="signup-btn"
+                        onClick={submitApplication}
+                         />
+                    </div>
+                </div>
+            </div>
             </main>
         </div>
     );

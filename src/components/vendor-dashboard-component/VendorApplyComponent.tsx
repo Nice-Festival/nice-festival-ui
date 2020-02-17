@@ -11,10 +11,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import HomeIcon from '@material-ui/icons/Home';
+import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
+import "./vendor-apply.css";
 import { Link } from 'react-router-dom';
 
 
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function ManagerDashboardComponent() {
+export default function VendorApplyComponent() {
     const classes = useStyles();
 
     return (
@@ -59,7 +59,7 @@ export default function ManagerDashboardComponent() {
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                     <Typography variant="h6" noWrap>
-                        Manager Dashboard
+                        Vendor Dashboard
           </Typography>
                 </Toolbar>
             </AppBar>
@@ -74,31 +74,31 @@ export default function ManagerDashboardComponent() {
                 <div className={classes.toolbar} />
                 <Divider />
                 <List>
-                    {/* <Link to='/manager'>
+                {/* <Link to='/vendor'>
                         <ListItem button key={'Home'}>
                             <ListItemIcon><HomeIcon /></ListItemIcon>
                             <ListItemText primary={'Home'} />
                         </ListItem>
                     </Link> */}
 
-                    <Link to="/man-inbox">
+                    <Link to="/ven-inbox">
                         <ListItem button key={'Inbox'}>
                             <ListItemIcon><InboxIcon /></ListItemIcon>
                             <ListItemText primary={'Inbox'} />
                         </ListItem>
                     </Link>
 
-                    <Link to="/man-vendor">
+                    <Link to="/ven-status">
                         <ListItem button key={'Vendor Applications'}>
-                            <ListItemIcon><MailIcon /></ListItemIcon>
-                            <ListItemText primary={'Vendor Applications'} />
+                            <ListItemIcon><ContactMailIcon /></ListItemIcon>
+                            <ListItemText primary={'Vendor Application Status'} />
                         </ListItem>
                     </Link>
 
-                    <Link to="/man-performer">
+                    <Link to="/ven-apply">
                         <ListItem button key={'Performer Applications'}>
-                            <ListItemIcon><ContactMailIcon /></ListItemIcon>
-                            <ListItemText primary={'Performer Applications'} />
+                            <ListItemIcon><LibraryAddCheckIcon/></ListItemIcon>
+                            <ListItemText primary={'Apply'} />
                         </ListItem>
                     </Link>
 
@@ -120,7 +120,26 @@ export default function ManagerDashboardComponent() {
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1>Manager Dashboard</h1>
+                <div id="body">
+                <div className="signup">
+                    <div>
+                        <h1>Vendor Application</h1>
+                        Company Name:
+                        <input type="text" placeholder="Crazy Chicken" className="txtb" />
+                        Website:
+                        <input type="text" placeholder="www.website.com" className="txtb" />
+                        Company Product:
+                        <select className="txtb">
+                            <option>Food</option>
+                            <option>Beverages</option>
+                            <option>Merchandise</option>
+                        </select>
+                        More Details:
+                        <textarea className="txtb"></textarea>
+                        <input type="submit" value="Apply" className="signup-btn" />
+                    </div>
+                </div>
+            </div>
             </main>
         </div>
     );

@@ -74,12 +74,12 @@ export default function ManagerPerformerListComponent() {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-                    <Link to='/manager'>
+                    {/* <Link to='/manager'>
                         <ListItem button key={'Home'}>
                             <ListItemIcon><HomeIcon /></ListItemIcon>
                             <ListItemText primary={'Home'} />
                         </ListItem>
-                    </Link>
+                    </Link> */}
 
                     <Link to="/man-inbox">
                         <ListItem button key={'Inbox'}>

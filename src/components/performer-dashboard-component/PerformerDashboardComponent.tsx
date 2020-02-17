@@ -11,11 +11,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
-import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
 
 
@@ -75,12 +73,12 @@ export default function PerformerDashboardComponent() {
                 <div className={classes.toolbar} />
                 <Divider />
                 <List>
-                    <Link to='/performer'>
+                    {/* <Link to='/performer'>
                         <ListItem button key={'Home'}>
                             <ListItemIcon><HomeIcon /></ListItemIcon>
                             <ListItemText primary={'Home'} />
                         </ListItem>
-                    </Link>
+                    </Link> */}
 
                     <Link to="/per-inbox">
                         <ListItem button key={'Inbox'}>
