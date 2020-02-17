@@ -18,7 +18,7 @@ export const apiArtistApply = async (current_user: any, details: string) => {
 
         })
         if (response.status === 200) {
-
+            console.log("Good!");
         }
     } catch (e) {
         console.log(e);

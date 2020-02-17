@@ -73,14 +73,12 @@ export default function PerformerApplyComponent() {
             if(u["user"]["id"] === currentUser["id"]){
                 console.log("can't apply again");
                 applied = true;
-                return;
             }
         })
 
         if(applied = false){
             apiArtistApply(currentUser, details)
         }
-
 
     }
     return (
