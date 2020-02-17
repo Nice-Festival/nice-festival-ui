@@ -60,15 +60,28 @@ export default function PerformerApplyComponent() {
     const appState = store.getState();
     let currentUser = appState.userState.currentUser;
     let applied = false;
-    let artist = "";
+    
     useEffect(() => {
-            apiGetArtist().then(data => {
-                console.log(data);
-            })
+           
       });
 
-    const submitApplication = () => {
-        apiArtistApply(currentUser, details)
+    const submitApplication = async () => {
+        let data = await apiGetArtist();
+        let artists:any = data;
+        console.log(artists);
+        artists.map((u:any) => {
+            if(u["user"]["id"] === currentUser["id"]){
+                console.log("can't apply again");
+                applied = true;
+                return;
+            }
+        })
+
+        if(applied = false){
+            apiArtistApply(currentUser, details)
+        }
+
+
     }
     return (
         <div className={classes.root}>
