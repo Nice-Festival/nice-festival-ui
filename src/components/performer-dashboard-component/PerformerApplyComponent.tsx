@@ -69,16 +69,16 @@ export default function PerformerApplyComponent() {
         let data = await apiGetArtist();
         let artists:any = data;
         console.log(artists);
-        artists.map((u:any) => {
-            if(u["user"]["id"] === currentUser["id"]){
-                console.log("can't apply again");
-                applied = true;
-            }
-        })
-
-        if(applied = false){
-            apiArtistApply(currentUser, details)
-        }
+        // artists.map((u:any) => {
+        //     if(u["user"]["id"] === currentUser["id"]){
+        //         console.log("can't apply again");
+        //         applied = true;
+        //     }
+        // })
+        apiArtistApply(currentUser, details)
+        // if(applied = false){
+            
+        // }
 
     }
     return (
