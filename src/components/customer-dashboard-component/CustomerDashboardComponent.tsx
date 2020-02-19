@@ -137,6 +137,7 @@ export default function CustomerDashboardComponent() {
                     <Divider/>
                     <p id="locationTitle">Festival Location</p>
                     <Divider/>
+                    <p>Venue Name: City Park</p>
                     <p>Address: 1 Palm Dr, New Orleans, LA 70124</p>
                     <LoadScript id="script-loader" googleMapsApiKey={process.env.REACT_APP_API_KEY}>
                         <GoogleMap id='example-map'
