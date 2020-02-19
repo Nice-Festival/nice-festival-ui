@@ -1,0 +1,12 @@
+img{
+    width: 318px;
+    height: 180px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+#ticket{
+    border-radius: 10px;
+    border-color: chartreuse;
+    align-items: center;
+}
