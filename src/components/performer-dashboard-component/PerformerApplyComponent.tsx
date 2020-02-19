@@ -70,7 +70,7 @@ export default function PerformerApplyComponent() {
     //     callApi();
     //   });
 
-    const submitApplication = async () => {
+    const submitApplication = async (props:any) => {
         let data = await apiGetArtist();
         let artists:any = data;
         console.log(artists);
@@ -83,6 +83,7 @@ export default function PerformerApplyComponent() {
             
         }
         if(applied === false){
+            props.history.push("performer")
             apiArtistApply(currentUser, details)
         }
         if(applied = true){

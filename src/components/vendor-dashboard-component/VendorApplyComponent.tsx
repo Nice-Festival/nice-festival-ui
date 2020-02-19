@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function VendorApplyComponent() {
+export default function VendorApplyComponent(props:any) {
     const classes = useStyles();
     let [details, setDetails] = useState("");
     let [type, setType] = useState("");
@@ -63,11 +63,15 @@ export default function VendorApplyComponent() {
     let applied = false;
 
     useEffect(() => {
-           setDetails("FOOD");
+          if(type.length < 1){
+            setType("FOOD");
+          }
     });
     const submitApplication = async () => {
         let data = await apiGetVendor();
         let vendor:any = data;
+        console.log(type);
+        console.log(type);
         console.log(vendor);
         for (let index = 0; index < vendor.length; index++) {
             if(vendor[index]["user"]["id"] === currentUser["id"]){
@@ -78,11 +82,13 @@ export default function VendorApplyComponent() {
             
         }
         if(applied === false){
-            apiVendorApply(currentUser, name, details, type)
+            await apiVendorApply(currentUser, name, details, type)
+            props.history.push("/vendor")
             applied = true;
         }
         else if(applied === true){
             console.log(applied);
+            // props.history.push("/vendor")
             console.log("Already applied!");
         }
     }
@@ -175,7 +181,6 @@ export default function VendorApplyComponent() {
                         Company Product:
                         <select 
                         className="txtb"
-                        defaultValue="FOOD"
                         onChange={(e) => setType(e.target.value)}
                         >
                             <option value="FOOD">Food</option>
