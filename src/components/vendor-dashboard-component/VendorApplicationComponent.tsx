@@ -16,8 +16,12 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
-
-
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import "./vendor-inbox.css";
 const drawerWidth = 240;
 
 
@@ -118,9 +122,28 @@ export default function VendorApplicationComponent() {
           ))}
         </List> */}
             </Drawer>
-            <main className={classes.content}>
+            <main id="main" className={classes.content}>
                 <div className={classes.toolbar} />
-                <h1>Vendor Dashboard</h1>
+                {/* implement later */}
+                {/* {(true) ? '': ''} */}
+                <h1>Vendor Application</h1>
+                <Card className="card">
+                        <CardContent>
+                            <Typography className="ticket-info" color="textSecondary" gutterBottom>
+                                Vendor Name
+                            </Typography>
+                            <Typography className="quantity" variant="h5" component="h2">
+                                Tent: Awaiting
+                            </Typography>
+                            <Typography className="shipping" color="textSecondary">
+                                Vendor Status: Pending
+                            </Typography>
+                            {/* <Typography variant="body2" component="p">
+                                well meaning and kindly.
+                                <br />
+                            </Typography> */}
+                        </CardContent>
+                    </Card>
             </main>
         </div>
     );

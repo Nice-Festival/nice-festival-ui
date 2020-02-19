@@ -120,6 +120,16 @@
     color: #000;
 }
 
+
+.cardContent{
+    width: 50vw;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 @media(max-width: 900px){
     #body{
         height: 130vh;
