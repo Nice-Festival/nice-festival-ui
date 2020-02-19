@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,6 +16,9 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
 import "./vendor-apply.css";
 import { Link } from 'react-router-dom';
+import { apiVendorApply } from '../remote/vendor-apply';
+import { apiGetVendor } from '../remote/get-vendors';
+import {store} from '../../Store';
 
 
 const drawerWidth = 240;
@@ -52,6 +55,28 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function VendorApplyComponent() {
     const classes = useStyles();
+    let [details, setDetails] = useState("");
+    let [type, setType] = useState("");
+    let [name, setName] = useState("");
+    const appState = store.getState();
+    let currentUser = appState.userState.currentUser;
+
+    const submitApplication = async () => {
+        let data = await apiGetVendor;
+        let vendor:any = data;
+        console.log(vendor);
+        // artists.map((u:any) => {
+        //     if(u["user"]["id"] === currentUser["id"]){
+        //         console.log("can't apply again");
+        //         applied = true;
+        //     }
+        // })
+        apiVendorApply(currentUser, name, details, type)
+        // if(applied = false){
+            
+        // }
+
+    }
 
     return (
         <div className={classes.root}>
@@ -125,18 +150,33 @@ export default function VendorApplyComponent() {
                     <div>
                         <h1>Vendor Application</h1>
                         Company Name:
-                        <input type="text" placeholder="Crazy Chicken" className="txtb" />
-                        Website:
-                        <input type="text" placeholder="www.website.com" className="txtb" />
+                        <input 
+                        type="text" 
+                        placeholder="Crazy Chicken" 
+                        className="txtb" 
+                        onChange={(e) => setName(e.target.value)}
+                        />
                         Company Product:
-                        <select className="txtb">
-                            <option>Food</option>
-                            <option>Beverages</option>
-                            <option>Merchandise</option>
+                        <select 
+                        className="txtb"
+                        defaultValue="FOOD"
+                        onChange={(e) => setType(e.target.value)}
+                        >
+                            <option value="FOOD">Food</option>
+                            <option value="BEVERAGES">Beverages</option>
+                            <option value="MERCHANDISE">Merchandise</option>
                         </select>
                         More Details:
-                        <textarea className="txtb"></textarea>
-                        <input type="submit" value="Apply" className="signup-btn" />
+                        <textarea 
+                        className="txtb"
+                        onChange={(e) => setDetails(e.target.value)}
+                        ></textarea>
+                        <input 
+                        type="button" 
+                        value="Apply" 
+                        className="signup-btn" 
+                        onClick={submitApplication}
+                        />
                     </div>
                 </div>
             </div>
