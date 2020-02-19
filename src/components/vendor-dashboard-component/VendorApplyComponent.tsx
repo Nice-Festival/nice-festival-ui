@@ -60,22 +60,38 @@ export default function VendorApplyComponent() {
     let [name, setName] = useState("");
     const appState = store.getState();
     let currentUser = appState.userState.currentUser;
+    let applied = false;
 
+    useEffect(() => {
+           setDetails("FOOD");
+    });
     const submitApplication = async () => {
-        let data = await apiGetVendor;
+        let data = await apiGetVendor();
         let vendor:any = data;
         console.log(vendor);
-        // artists.map((u:any) => {
-        //     if(u["user"]["id"] === currentUser["id"]){
-        //         console.log("can't apply again");
-        //         applied = true;
-        //     }
-        // })
-        apiVendorApply(currentUser, name, details, type)
-        // if(applied = false){
+        for (let index = 0; index < vendor.length; index++) {
+            if(vendor[index]["user"]["id"] === currentUser["id"]){
+                console.log("can't apply again");
+                applied = true;
+                break;
+            }
             
-        // }
+        }
+        if(applied === false){
+            apiVendorApply(currentUser, name, details, type)
+            applied = true;
+        }
+        else if(applied === true){
+            console.log(applied);
+            console.log("Already applied!");
+        }
+    }
 
+    const logOut = () => {
+        appState.userState.setState({
+            ...appState,
+            currentUser: null
+        })
     }
 
     return (

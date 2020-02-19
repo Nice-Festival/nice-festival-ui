@@ -61,24 +61,33 @@ export default function PerformerApplyComponent() {
     let currentUser = appState.userState.currentUser;
     let applied = false;
     
-    useEffect(() => {
-           
-      });
+    // useEffect(() => {
+    //       let callApi =  async () => {
+    //         artists = await apiGetArtist();
+    //         console.log(artists);
+    //      }
+        
+    //     callApi();
+    //   });
 
     const submitApplication = async () => {
         let data = await apiGetArtist();
         let artists:any = data;
         console.log(artists);
-        // artists.map((u:any) => {
-        //     if(u["user"]["id"] === currentUser["id"]){
-        //         console.log("can't apply again");
-        //         applied = true;
-        //     }
-        // })
-        apiArtistApply(currentUser, details)
-        // if(applied = false){
+        for (let index = 0; index < artists.length; index++) {
+            if(artists[0]["user"]["id"] === currentUser["id"]){
+                console.log("can't apply again");
+                applied = true;
+                break;
+            }
             
-        // }
+        }
+        if(applied === false){
+            apiArtistApply(currentUser, details)
+        }
+        if(applied = true){
+            console.log("Already");
+        }
 
     }
     return (
