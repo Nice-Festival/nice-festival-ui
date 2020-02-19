@@ -97,21 +97,6 @@ export default function CustomerDashboardComponent() {
                             <ListItemText primary={'Inbox'} />
                         </ListItem>
                     </Link>
-
-                    <Link to="/personal-schedule">
-                        <ListItem button key={'Vendor Applications'}>
-                            <ListItemIcon><EventAvailable /></ListItemIcon>
-                            <ListItemText primary={'Personal Schedule'} />
-                        </ListItem>
-                    </Link>
-
-                    <Link to="/add-to-schedule">
-                        <ListItem button key={'Performer Applications'}>
-                            <ListItemIcon><AddBoxIcon /></ListItemIcon>
-                            <ListItemText primary={'Add To Schedule'} />
-                        </ListItem>
-                    </Link>
-
                 </List>
                 <Divider />
                 <ListItem button key={'Logout'}>
