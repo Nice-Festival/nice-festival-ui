@@ -23,6 +23,7 @@ import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 import './manager-inbox.css';
 import { apiGetMessages } from "../remote/get-messages";
 import { get } from 'https';
+import { reverse } from 'dns';
 
 
 
@@ -61,6 +62,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function ManagerInboxComponent() {
   const classes = useStyles();
   let data: any = "";
+  let sortedMessages = [];
   let [messages, setMessages] = useState([]);
   let count = 0;
 
@@ -150,7 +152,9 @@ export default function ManagerInboxComponent() {
         {(messages.length !== 0) ?
           <div>
             <h1>Total Messages: {messages.length}</h1>
-            {messages.map((m: any) => {
+            {
+            // messages.sorted(reverse=true)
+            messages.reverse().map((m: any) => {
               return <Card className='card' key={count++}>
                 <CardContent>
                   <EmailIcon />
