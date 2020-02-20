@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import './contact-form.css';
 import { NavbarComponent } from '../navbar-component/NavbarComponent';
+import { FooterComponent } from '../footer/FooterComponen';
+import Axios from 'axios';
 
 
 export class ContactFormComponent extends React.Component<any, any> {
@@ -8,25 +10,17 @@ export class ContactFormComponent extends React.Component<any, any> {
     constructor(props: any) {
         super(props)
         this.state = {
-            firstName: '',
-            lastName: '',
+            name: '',
             email: '',
             inquiry: 'Performer Inquiries',
             details: ''
         }
     }
 
-    updateFirstName = (event: any) => {
+    updateName = (event: any) => {
         this.setState({
             ...this.state,
-            firstName: event.target.value
-        })
-
-    }
-    updateLastName = (event: any) => {
-        this.setState({
-            ...this.state,
-            lastName: event.target.value
+            name: event.target.value
         })
 
     }
@@ -49,6 +43,19 @@ export class ContactFormComponent extends React.Component<any, any> {
             details: event.target.value
         })
     }
+
+    sendEmail = async (event: SyntheticEvent) => {
+        event.preventDefault();
+        await Axios.post("https://email-sender-nice-festival.herokuapp.com/postData", {
+            "name": this.state.name,
+            "email": this.state.email,
+            "inquiry": this.state.inquiry,
+            "details": this.state.details
+        });
+
+        this.props.history.push("/");
+
+    }
     render() {
         return (
             <div id="content">
@@ -57,20 +64,12 @@ export class ContactFormComponent extends React.Component<any, any> {
                     <div className="signup">
                         <div>
                             <h1> Inquiry </h1>
-                            First Name:
+                             Name:
                         <input type="text" 
-                        placeholder="John"
+                        placeholder="John Doe"
                          className="txtb" 
-                         value={this.state.firstName}
-                         onChange={this.updateFirstName} 
-                         required
-                         />
-                            Last Name:
-                        <input type="text" 
-                        placeholder="Doe"
-                         className="txtb" 
-                         value={this.state.lastName}
-                         onChange={this.updateLastName} 
+                         value={this.state.name}
+                         onChange={this.updateName} 
                          required
                          />
                             Email:
@@ -105,10 +104,16 @@ export class ContactFormComponent extends React.Component<any, any> {
                         onChange={this.updateDetails} 
                         required
                         ></textarea>
-                            <input type="submit" value="Send Inquiry" className="signup-btn" />
+                            <input 
+                            type="submit" 
+                            value="Send Inquiry" 
+                            className="signup-btn" 
+                            onClick={this.sendEmail}
+                            />
                         </div>
                     </div>
                 </div>
+                <FooterComponent/>
             </div>
         )
     }
