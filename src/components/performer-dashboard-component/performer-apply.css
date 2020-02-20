@@ -114,6 +114,7 @@
 .card{
     margin-top: .7rem;
     width: 60vw;
+    min-height: 10rem;
 }
 
 ::placeholder{

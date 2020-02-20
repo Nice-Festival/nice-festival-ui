@@ -51,7 +51,7 @@ export class LoginComponent extends React.Component<any,ILoginState> {
             }
             else if(this.props.currentUser["role"] === "VENDOR"){
                 console.log("Vendor");
-                this.props.history.push("/vendor")
+                this.props.history.push("/ven-status")
 
             }
             else if(this.props.currentUser["role"] === "MANAGER"){
@@ -59,7 +59,7 @@ export class LoginComponent extends React.Component<any,ILoginState> {
             }
             else if(this.props.currentUser["role"] === "ARTIST"){
                 console.log("Artist");
-                this.props.history.push("/performer")
+                this.props.history.push("/per-status")
 
             }
         }

@@ -85,12 +85,12 @@ export default function VendorApplicationComponent() {
                         </ListItem>
                     </Link> */}
 
-                    <Link to="/ven-inbox">
+                    {/* <Link to="/ven-inbox">
                         <ListItem button key={'Inbox'}>
                             <ListItemIcon><InboxIcon /></ListItemIcon>
                             <ListItemText primary={'Inbox'} />
                         </ListItem>
-                    </Link>
+                    </Link> */}
 
                     <Link to="/ven-status">
                         <ListItem button key={'Vendor Applications'}>

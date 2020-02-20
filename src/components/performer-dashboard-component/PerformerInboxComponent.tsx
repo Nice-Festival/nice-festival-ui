@@ -19,6 +19,7 @@ import CardContent from '@material-ui/core/CardContent';
 import EmailIcon from '@material-ui/icons/Email'
 import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 import { Link } from 'react-router-dom';
+import MessageModal from "../modal/MessageModal";
 
 
 const drawerWidth = 240;
@@ -134,6 +135,7 @@ export default function PerformerInboxComponent() {
             From: James Smith
           </Typography>
         </CardContent>
+        <MessageModal/>
        </Card>
        <Divider/>
        <Card className='card'>

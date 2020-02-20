@@ -86,15 +86,15 @@ export default function PerformerApplicationComponent() {
                         </ListItem>
                     </Link> */}
 
-                    <Link to="/per-inbox">
+                    {/* <Link to="/per-inbox">
                         <ListItem button key={'Inbox'}>
                             <ListItemIcon><InboxIcon /></ListItemIcon>
                             <ListItemText primary={'Inbox'} />
                         </ListItem>
-                    </Link>
+                    </Link> */}
 
                     <Link to="/per-status">
-                        <ListItem button key={'Vendor Applications'}>
+                        <ListItem button key={'Performer Applications'}>
                             <ListItemIcon><ContactMailIcon /></ListItemIcon>
                             <ListItemText primary={'Performer Application Status'} />
                         </ListItem>
