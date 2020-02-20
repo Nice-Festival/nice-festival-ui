@@ -63,11 +63,23 @@ const useStyles = makeStyles((theme: Theme) =>
       // backgroundColor: '#000',
       padding: theme.spacing(3),
     },
+    button: {
+      display: 'block',
+      marginTop: theme.spacing(2),
+    },
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
   }),
 );
 
 export default function ManagerVendorComponent() {
   const classes = useStyles();
+
+  // const handleChange = () => {
+  //   setVendorTent(event.target.value);
+  // };
 
   return (
     <div className={classes.root}>
@@ -155,7 +167,7 @@ export default function ManagerVendorComponent() {
             </Typography>
               </Grid>
               <Grid item xs>
-                <FormControl required variant="filled" /*className={classes.formControl}*/>
+                <FormControl required variant="filled" className={classes.formControl}>
                   <InputLabel id="tent-name">Tent</InputLabel>
                   <Select
                     labelId="tent-name"

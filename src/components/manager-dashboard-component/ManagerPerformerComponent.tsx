@@ -58,6 +58,14 @@ const useStyles = makeStyles((theme: Theme) =>
       // backgroundColor: '#000',
       padding: theme.spacing(3),
     },
+    button: {
+      display: 'block',
+      marginTop: theme.spacing(2),
+    },
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
   }),
 );
 
@@ -146,7 +154,7 @@ export default function ManagerPerformerListComponent() {
             </Typography>
               </Grid>
               <Grid item xs>
-                <FormControl required variant="filled" /*className={classes.formControl}*/>
+                <FormControl required variant="filled" className={classes.formControl}>
                   <InputLabel id="stage-name">Stage</InputLabel>
                   <Select
                     labelId="stage-name"
@@ -163,7 +171,7 @@ export default function ManagerPerformerListComponent() {
                 </FormControl>
               </Grid>
               <Grid item xs>
-                <FormControl required variant="filled" /*className={classes.formControl}*/>
+                <FormControl required variant="filled" className={classes.formControl}>
                   <InputLabel id="set-time">Set Time</InputLabel>
                   <Select
                     labelId="set-time"
@@ -198,7 +206,7 @@ export default function ManagerPerformerListComponent() {
                 </FormControl>
               </Grid>
               <Grid item xs>
-                <FormControl required variant="filled" /*className={classes.formControl}*/>
+                <FormControl required variant="filled" className={classes.formControl}>
                   <InputLabel id="set-day">Set Day</InputLabel>
                   <Select
                     labelId="set-day"
