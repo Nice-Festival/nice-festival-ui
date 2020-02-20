@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles, useTheme, ThemeProvider } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -14,13 +14,24 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { createMuiTheme } from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
+import { Card, CardContent, FormControl, InputLabel, Select, MenuItem, FormHelperText, ButtonGroup, Button, Grid } from '@material-ui/core';
 
 
 const drawerWidth = 240;
 
-
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#1CC676'
+    },
+    secondary: {
+      main: '#A61C3C',
+    },
+  },
+});
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -74,39 +85,39 @@ export default function ManagerPerformerListComponent() {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-                    {/* <Link to='/manager'>
+          {/* <Link to='/manager'>
                         <ListItem button key={'Home'}>
                             <ListItemIcon><HomeIcon /></ListItemIcon>
                             <ListItemText primary={'Home'} />
                         </ListItem>
                     </Link> */}
 
-                    <Link to="/man-inbox">
-                        <ListItem button key={'Inbox'}>
-                            <ListItemIcon><InboxIcon /></ListItemIcon>
-                            <ListItemText primary={'Inbox'} />
-                        </ListItem>
-                    </Link>
+          <Link to="/man-inbox">
+            <ListItem button key={'Inbox'}>
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText primary={'Inbox'} />
+            </ListItem>
+          </Link>
 
-                    <Link to="/man-vendor">
-                        <ListItem button key={'Vendor Applications'}>
-                            <ListItemIcon><MailIcon /></ListItemIcon>
-                            <ListItemText primary={'Vendor Applications'} />
-                        </ListItem>
-                    </Link>
+          <Link to="/man-vendor">
+            <ListItem button key={'Vendor Applications'}>
+              <ListItemIcon><MailIcon /></ListItemIcon>
+              <ListItemText primary={'Vendor Applications'} />
+            </ListItem>
+          </Link>
 
-                    <Link to="/man-performer">
-                        <ListItem button key={'Performer Applications'}>
-                            <ListItemIcon><ContactMailIcon /></ListItemIcon>
-                            <ListItemText primary={'Performer Applications'} />
-                        </ListItem>
-                    </Link>
+          <Link to="/man-performer">
+            <ListItem button key={'Performer Applications'}>
+              <ListItemIcon><ContactMailIcon /></ListItemIcon>
+              <ListItemText primary={'Performer Applications'} />
+            </ListItem>
+          </Link>
 
-                </List>
+        </List>
         <Divider />
         <ListItem button key={'Logout'}>
-        <ListItemIcon><ExitToAppIcon/></ListItemIcon>
-        <ListItemText primary="Logout"/>
+          <ListItemIcon><ExitToAppIcon /></ListItemIcon>
+          <ListItemText primary="Logout" />
         </ListItem>
         {/* <Divider />
         <List>
@@ -121,6 +132,100 @@ export default function ManagerPerformerListComponent() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <h1>Performer stuff</h1>
+        <Card className="card">
+          <CardContent>
+            <Grid container spacing={3}>
+              <Grid item xs>
+                <Typography>
+                  Username/Name goes here
+            </Typography>
+              </Grid>
+              <Grid item xs>
+                <Typography>
+                  Details go here
+            </Typography>
+              </Grid>
+              <Grid item xs>
+                <FormControl required variant="filled" /*className={classes.formControl}*/>
+                  <InputLabel id="stage-name">Stage</InputLabel>
+                  <Select
+                    labelId="stage-name"
+                    id="stage-name-required"
+                  /*value={age}
+                  onChange={handleChange}
+                  className={classes.selectEmpty}*/
+                  >
+                    <MenuItem value={'AWAITING'}>Awaiting</MenuItem>
+                    <MenuItem value={'SONORA'}>Sonora</MenuItem>
+                    <MenuItem value={'YUMA'}>Yuma</MenuItem>
+                  </Select>
+                  <FormHelperText>Required</FormHelperText>
+                </FormControl>
+              </Grid>
+              <Grid item xs>
+                <FormControl required variant="filled" /*className={classes.formControl}*/>
+                  <InputLabel id="set-time">Set Time</InputLabel>
+                  <Select
+                    labelId="set-time"
+                    id="set-time-required"
+                  /*value={age}
+                  onChange={handleChange}
+                  className={classes.selectEmpty}*/
+                  >
+                    <MenuItem value={'NULL'}>Denied</MenuItem>
+                    <MenuItem value={'TWO'}>2:00</MenuItem>
+                    <MenuItem value={'TWO_THIRTY'}>2:30</MenuItem>
+                    <MenuItem value={'THREE'}>3:00</MenuItem>
+                    <MenuItem value={'THREE_THIRTY'}>3:30</MenuItem>
+                    <MenuItem value={'FOUR'}>4:00</MenuItem>
+                    <MenuItem value={'FOUR_THIRTY'}>4:30</MenuItem>
+                    <MenuItem value={'FIVE'}>5:00</MenuItem>
+                    <MenuItem value={'FIVE_THIRTY'}>5:30</MenuItem>
+                    <MenuItem value={'SIX'}>6:00</MenuItem>
+                    <MenuItem value={'SIX_THIRTY'}>6:30</MenuItem>
+                    <MenuItem value={'SEVEN'}>7:00</MenuItem>
+                    <MenuItem value={'SEVEN_THIRTY'}>7:30</MenuItem>
+                    <MenuItem value={'EIGHT'}>8:00</MenuItem>
+                    <MenuItem value={'EIGHT_THIRTY'}>8:30</MenuItem>
+                    <MenuItem value={'NINE'}>9:00</MenuItem>
+                    <MenuItem value={'NINE_THIRTY'}>9:30</MenuItem>
+                    <MenuItem value={'TEN'}>10:00</MenuItem>
+                    <MenuItem value={'TEN_THIRTY'}>10:30</MenuItem>
+                    <MenuItem value={'ELEVEN'}>11:00</MenuItem>
+                    <MenuItem value={'ELEVEN_THIRTY'}>11:30</MenuItem>
+                  </Select>
+                  <FormHelperText>Required</FormHelperText>
+                </FormControl>
+              </Grid>
+              <Grid item xs>
+                <FormControl required variant="filled" /*className={classes.formControl}*/>
+                  <InputLabel id="set-day">Set Day</InputLabel>
+                  <Select
+                    labelId="set-day"
+                    id="set-day-required"
+                  /*value={age}
+                  onChange={handleChange}
+                  className={classes.selectEmpty}*/
+                  >
+                    <MenuItem value={'NULL'}>Denied</MenuItem>
+                    <MenuItem value={'FRIDAY'}>Friday</MenuItem>
+                    <MenuItem value={'SATURDAY'}>Saturday</MenuItem>
+                    <MenuItem value={'SUNDAY'}>Sunday</MenuItem>
+                  </Select>
+                  <FormHelperText>Required</FormHelperText>
+                </FormControl>
+              </Grid>
+              <Grid item xs>
+                <ThemeProvider theme={theme}>
+                <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                  <Button id='approve' color="primary">Approve</Button>
+                  <Button id='deny' color="secondary">Deny</Button>
+                </ButtonGroup>
+                </ThemeProvider>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
         {/* <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum

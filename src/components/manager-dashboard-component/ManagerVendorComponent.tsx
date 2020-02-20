@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -22,11 +22,21 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Grid, FormControl, InputLabel, Select, MenuItem, FormHelperText, ButtonGroup } from '@material-ui/core';
 
 
 const drawerWidth = 240;
 
-
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#1CC676'
+    },
+    secondary: {
+      main: '#A61C3C',
+    },
+  },
+});
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -80,38 +90,38 @@ export default function ManagerVendorComponent() {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-                    {/* <Link to='/manager'>
+          {/* <Link to='/manager'>
                         <ListItem button key={'Home'}>
                             <ListItemIcon><HomeIcon /></ListItemIcon>
                             <ListItemText primary={'Home'} />
                         </ListItem>
                     </Link> */}
 
-                    <Link to="/man-inbox">
-                        <ListItem button key={'Inbox'}>
-                            <ListItemIcon><InboxIcon /></ListItemIcon>
-                            <ListItemText primary={'Inbox'} />
-                        </ListItem>
-                    </Link>
+          <Link to="/man-inbox">
+            <ListItem button key={'Inbox'}>
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText primary={'Inbox'} />
+            </ListItem>
+          </Link>
 
-                    <Link to="/man-vendor">
-                        <ListItem button key={'Vendor Applications'}>
-                            <ListItemIcon><MailIcon /></ListItemIcon>
-                            <ListItemText primary={'Vendor Applications'} />
-                        </ListItem>
-                    </Link>
+          <Link to="/man-vendor">
+            <ListItem button key={'Vendor Applications'}>
+              <ListItemIcon><MailIcon /></ListItemIcon>
+              <ListItemText primary={'Vendor Applications'} />
+            </ListItem>
+          </Link>
 
-                    <Link to="/man-performer">
-                        <ListItem button key={'Performer Applications'}>
-                            <ListItemIcon><ContactMailIcon /></ListItemIcon>
-                            <ListItemText primary={'Performer Applications'} />
-                        </ListItem>
-                    </Link>
+          <Link to="/man-performer">
+            <ListItem button key={'Performer Applications'}>
+              <ListItemIcon><ContactMailIcon /></ListItemIcon>
+              <ListItemText primary={'Performer Applications'} />
+            </ListItem>
+          </Link>
         </List>
         <Divider />
         <ListItem button key={'Logout'}>
-        <ListItemIcon><ExitToAppIcon/></ListItemIcon>
-        <ListItemText primary="Logout"/>
+          <ListItemIcon><ExitToAppIcon /></ListItemIcon>
+          <ListItemText primary="Logout" />
         </ListItem>
         {/* <Divider />
         <List>
@@ -126,7 +136,53 @@ export default function ManagerVendorComponent() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <h1>Vendor stuff</h1>
-       
+        <Card className="card">
+          <CardContent>
+            <Grid container spacing={3}>
+              <Grid item xs>
+                <Typography>
+                  Company Name goes here
+            </Typography>
+              </Grid>
+              <Grid item xs>
+                <Typography>
+                  Vendor Type goes here
+            </Typography>
+              </Grid>
+              <Grid item xs>
+                <Typography>
+                  Details go here
+            </Typography>
+              </Grid>
+              <Grid item xs>
+                <FormControl required variant="filled" /*className={classes.formControl}*/>
+                  <InputLabel id="tent-name">Tent</InputLabel>
+                  <Select
+                    labelId="tent-name"
+                    id="tent-name-required"
+                  /*value={age}
+                  onChange={handleChange}
+                  className={classes.selectEmpty}*/
+                  >
+                    <MenuItem value={'AWAITING'}>Awaiting</MenuItem>
+                    <MenuItem value={'MOHAVE_TENT'}>Mohave</MenuItem>
+                    <MenuItem value={'SAHARA_TENT'}>Sahara</MenuItem>
+                    <MenuItem value={'OOGA_BOOGA_TENT'}>Ooga Booga</MenuItem>
+                  </Select>
+                  <FormHelperText>Required</FormHelperText>
+                </FormControl>
+              </Grid>
+              <Grid item xs>
+                <ThemeProvider theme={theme}>
+                  <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                    <Button id='approve' color="primary">Approve</Button>
+                    <Button id='deny' color="secondary">Deny</Button>
+                  </ButtonGroup>
+                </ThemeProvider>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
       </main>
     </div>
   );
