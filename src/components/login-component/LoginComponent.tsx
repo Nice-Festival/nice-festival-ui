@@ -66,16 +66,16 @@ export class LoginComponent extends React.Component<any,ILoginState> {
 
     render() {
         return (
-            <div id="content">
+            <div id="loginContent">
                 <NavbarComponent id="nav" />
                 <div id="login-body">
                     <div className="login">
                         <div>
                             <h1>Login</h1>
-                            Email:
+                            Username:
                         <input 
-                        type="email" 
-                        placeholder="jdoe@gmail.com" 
+                        type="text" 
+                        placeholder="jdoe" 
                         className="txtb" 
                         onChange={this.updateUsername}
                         />

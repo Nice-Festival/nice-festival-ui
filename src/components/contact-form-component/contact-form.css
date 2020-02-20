@@ -3,13 +3,12 @@
     color: #000;
 }
 
-#body{
+#contact-body{
     margin: 0;
     padding: 0;
     background: #F68E5F;
-    height: 100vh;
     font-size: .8rem;
-    min-height: 120vh;
+    min-height: 150vh;
     display: flex;
     justify-content: center;
     align-items: center;
