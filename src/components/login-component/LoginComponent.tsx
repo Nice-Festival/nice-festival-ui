@@ -55,6 +55,7 @@ export class LoginComponent extends React.Component<any,ILoginState> {
 
             }
             else if(this.props.currentUser["role"] === "MANAGER"){
+                this.props.history.push("/manager")
             }
             else if(this.props.currentUser["role"] === "ARTIST"){
                 console.log("Artist");
