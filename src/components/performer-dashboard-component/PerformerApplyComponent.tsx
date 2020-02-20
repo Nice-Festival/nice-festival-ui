@@ -54,28 +54,20 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function PerformerApplyComponent() {
+export default function PerformerApplyComponent(props: any) {
     const classes = useStyles();
     let [details, setDetails] = useState("");
     const appState = store.getState();
     let currentUser = appState.userState.currentUser;
     let applied = false;
     
-    // useEffect(() => {
-    //       let callApi =  async () => {
-    //         artists = await apiGetArtist();
-    //         console.log(artists);
-    //      }
-        
-    //     callApi();
-    //   });
 
-    const submitApplication = async (props:any) => {
+    const submitApplication = async () => {
         let data = await apiGetArtist();
         let artists:any = data;
         console.log(artists);
         for (let index = 0; index < artists.length; index++) {
-            if(artists[0]["user"]["id"] === currentUser["id"]){
+            if(artists[index]["user"]["id"] === currentUser["id"]){
                 console.log("can't apply again");
                 applied = true;
                 break;
@@ -83,10 +75,11 @@ export default function PerformerApplyComponent() {
             
         }
         if(applied === false){
-            props.history.push("performer")
-            apiArtistApply(currentUser, details)
+            await apiArtistApply(currentUser, details);
+            props.history.push("performer");
+
         }
-        if(applied = true){
+        if(applied === true){
             console.log("Already");
         }
 
