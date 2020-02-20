@@ -40,16 +40,16 @@ const App: React.FC = () => {
             <Route path="/add-to-schedule" component={CustomerAddComponent} />
             <Route path="/personal-schedule" component={CustomerPersonalComponent} />
             <Route path="/cust-inbox" component={CustomerInboxComponent} />
-            <Route path="/vendor" component={VendorDashboardComponent} />
+            {/* <Route path="/vendor" component={VendorDashboardComponent} /> */}
             <Route path="/ven-apply" component={VendorApplyComponent} />
             <Route path="/ven-status" component={VendorApplicationComponent} />
             <Route path="/ven-inbox" component={VendorInboxComponent} />
-            <Route path="/performer" component={PerformerDashboardComponent} />
-            <Route path="/performer" component={PerformerDashboardComponent} />
+            {/* <Route path="/performer" component={PerformerDashboardComponent} /> */}
+            {/* <Route path="/performer" component={PerformerDashboardComponent} /> */}
             <Route path="/per-apply" component={PerformerApplyComponent} />
             <Route path="/per-status" component={PerformerApplicationComponent} />
             <Route path="/per-inbox" component={PerformerInboxComponent} />
-            <Route path="/manager" component={ManagerDashboardComponent} />
+            {/* <Route path="/manager" component={ManagerDashboardComponent} /> */}
             <Route path="/man-inbox" component={ManagerInboxComponent} />
             <Route path="/man-performer" component={ManagerPerformerListComponent} />
             <Route path="/man-vendor" component={ManagerVendorComponent} />
