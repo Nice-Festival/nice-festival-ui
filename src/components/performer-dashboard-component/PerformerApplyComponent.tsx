@@ -60,6 +60,14 @@ export default function PerformerApplyComponent(props: any) {
     const appState = store.getState();
     let currentUser = appState.userState.currentUser;
     let applied = false;
+
+   
+
+  useEffect(() => {
+    if(currentUser === null){
+      props.history.push("/")
+  } 
+  })
     
 
     const submitApplication = async () => {

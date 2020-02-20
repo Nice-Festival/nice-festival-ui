@@ -66,6 +66,9 @@ export default function VendorApplyComponent(props:any) {
           if(type.length < 1){
             setType("FOOD");
           }
+          if(currentUser === null){
+              props.history.push("/")
+          }
     });
     const submitApplication = async () => {
         let data = await apiGetVendor();

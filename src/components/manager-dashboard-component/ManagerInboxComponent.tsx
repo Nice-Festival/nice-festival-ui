@@ -22,8 +22,8 @@ import EmailIcon from '@material-ui/icons/Email'
 import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 import './manager-inbox.css';
 import { apiGetMessages } from "../remote/get-messages";
-import { get } from 'https';
-import { reverse } from 'dns';
+
+import {store} from '../../Store';
 
 
 
@@ -59,12 +59,14 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function ManagerInboxComponent() {
+export default function ManagerInboxComponent(props:any) {
   const classes = useStyles();
   let data: any = "";
   let sortedMessages = [];
   let [messages, setMessages] = useState([]);
   let count = 0;
+  const appState = store.getState();
+  let currentUser = appState.userState.currentUser;
 
   // let formData:any = ""
   const getMessages = async () => {
@@ -79,6 +81,12 @@ export default function ManagerInboxComponent() {
   }
 
   useEffect(() => {
+    if(currentUser === null){
+      props.history.push("/")
+  } else if(currentUser["role"] !== "MANAGER"){
+    props.history.push("/")
+
+  }
     getMessages();
   })
 
@@ -154,18 +162,18 @@ export default function ManagerInboxComponent() {
             <h1>Total Messages: {messages.length}</h1>
             {
             // messages.sorted(reverse=true)
-            messages.reverse().map((m: any) => {
-              return <Card className='card' key={count++}>
+            messages.map((m: any) => {
+              return <Card className='card cardInfo' key={count++}>
                 <CardContent>
                   <EmailIcon />
                   <Typography component="h5" variant="h5">
                     From: {m["sender"]["firstName"] + " " + m["sender"]["lastName"] }
                  </Typography>
                   <Typography component="h5" variant="h5">
-                    Sent: {String(new Date(m["sentTime"]))}
-                 </Typography>
-                  <Typography component="h5" variant="h5">
                     Message: {m["message"]}
+                 </Typography>
+                 <Typography variant="subtitle1">
+                    Sent: {String(new Date(m["sentTime"]))}
                  </Typography>
                 </CardContent>
               </Card>

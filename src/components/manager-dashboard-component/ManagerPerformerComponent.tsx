@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,6 +16,8 @@ import ContactMailIcon from '@material-ui/icons/ContactMail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
+import {store} from '../../Store';
+
 
 
 const drawerWidth = 240;
@@ -50,8 +52,19 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function ManagerPerformerListComponent() {
+export default function ManagerPerformerListComponent(props:any) {
   const classes = useStyles();
+  const appState = store.getState();
+  let currentUser = appState.userState.currentUser;
+
+  useEffect(() => {
+    if(currentUser === null){
+      props.history.push("/")
+  } else if(currentUser["role"] !== "MANAGER"){
+    props.history.push("/")
+
+  }
+  })
 
   return (
     <div className={classes.root}>

@@ -90,13 +90,6 @@ export default function CustomerDashboardComponent() {
                             <ListItemText primary={'Home'} />
                         </ListItem>
                     </Link>
-
-                    <Link to="/cust-inbox">
-                        <ListItem button key={'Inbox'}>
-                            <ListItemIcon><InboxIcon /></ListItemIcon>
-                            <ListItemText primary={'Inbox'} />
-                        </ListItem>
-                    </Link>
                 </List>
                 <Divider />
                 <ListItem button key={'Logout'}>

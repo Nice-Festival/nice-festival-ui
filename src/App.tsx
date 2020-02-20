@@ -39,7 +39,7 @@ const App: React.FC = () => {
             <Route path="/customer" component={CustomerDashboardComponent} />
             {/* <Route path="/add-to-schedule" component={CustomerAddComponent} /> */}
             {/* <Route path="/personal-schedule" component={CustomerPersonalComponent} /> */}
-            <Route path="/cust-inbox" component={CustomerInboxComponent} />
+            {/* <Route path="/cust-inbox" component={CustomerInboxComponent} /> */}
             {/* <Route path="/vendor" component={VendorDashboardComponent} /> */}
             <Route path="/ven-apply" component={VendorApplyComponent} />
             <Route path="/ven-status" component={VendorApplicationComponent} />
