@@ -1,6 +1,7 @@
 import React from 'react'
 import { Divider } from '@material-ui/core'
 import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import "./checkout.css"
 
 
 export class CheckoutComponet extends React.Component {
@@ -8,7 +9,7 @@ export class CheckoutComponet extends React.Component {
     render(){
 
         return(
-            <div>
+            <div id="checkout">
             <form>
             <Row form>
         <Col md={6}>
@@ -20,7 +21,7 @@ export class CheckoutComponet extends React.Component {
         <Col md={6}>
           <FormGroup>
             <Label for="EXP Date">Experation Date</Label>
-            <Input type="month" name="password" id="examplePassword" placeholder="password placeholder" />
+            <Input type="month" name="expDate" id="expDate" placeholder="99/9999" />
           </FormGroup>
         </Col>
       </Row>
@@ -29,6 +30,6 @@ export class CheckoutComponet extends React.Component {
             </div>
         )
         
-    }
+    };
     
 }
