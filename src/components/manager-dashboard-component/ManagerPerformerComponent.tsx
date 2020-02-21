@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStyles, Theme, makeStyles, useTheme, ThemeProvider } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,6 +18,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, FormControl, InputLabel, Select, MenuItem, FormHelperText, ButtonGroup, Button, Grid } from '@material-ui/core';
+import { apiGetArtist } from '../remote/get-artist';
+import { apiManageArtist } from '../remote/manage-artist';
 
 
 const drawerWidth = 240;
@@ -71,6 +73,49 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function ManagerPerformerListComponent() {
   const classes = useStyles();
+  let data: any = "";
+  let [artists, setArtists] = useState([]);
+  let [stage, setStage] = useState("");
+  let [time, setTime] = useState("");
+  let [day, setDay] = useState("");
+  let [status, setStatus] = useState("");
+  let count = 0;
+
+  const manageArtist = async () => {
+    await apiManageArtist(artists, stage, time, day, status)
+  }
+
+  const submitApprove = (artist:any) => {
+    setStatus("APPROVED");
+    console.log(artist);
+    console.log(stage);
+    console.log(time);
+    console.log(day);
+    console.log(status);
+
+    
+    apiManageArtist(artist, stage, time, day, "APPROVED")
+    getArtists();
+  }
+
+  const submitDeny = (artist:any) => {
+    console.log(artist)
+    setStatus("DENIED");
+    manageArtist();
+    getArtists();
+  }
+
+  const getArtists = async () => {
+    if (artists.length === 0) {
+      data = await apiGetArtist();
+      setArtists(data);
+      console.log(data);
+    }
+  }
+
+  useEffect(() => {
+    getArtists();
+  })
 
   return (
     <div className={classes.root}>
@@ -139,124 +184,109 @@ export default function ManagerPerformerListComponent() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <h1>Performer stuff</h1>
-        <Card className="card">
-          <CardContent>
-            <Grid container spacing={3}>
-              <Grid item xs>
-                <Typography>
-                  Username/Name goes here
-            </Typography>
-              </Grid>
-              <Grid item xs>
-                <Typography>
-                  Details go here
-            </Typography>
-              </Grid>
-              <Grid item xs>
-                <FormControl required variant="filled" className={classes.formControl}>
-                  <InputLabel id="stage-name">Stage</InputLabel>
-                  <Select
-                    labelId="stage-name"
-                    id="stage-name-required"
-                  /*value={age}
-                  onChange={handleChange}
-                  className={classes.selectEmpty}*/
-                  >
-                    <MenuItem value={'AWAITING'}>Awaiting</MenuItem>
-                    <MenuItem value={'SONORA'}>Sonora</MenuItem>
-                    <MenuItem value={'YUMA'}>Yuma</MenuItem>
-                  </Select>
-                  <FormHelperText>Required</FormHelperText>
-                </FormControl>
-              </Grid>
-              <Grid item xs>
-                <FormControl required variant="filled" className={classes.formControl}>
-                  <InputLabel id="set-time">Set Time</InputLabel>
-                  <Select
-                    labelId="set-time"
-                    id="set-time-required"
-                  /*value={age}
-                  onChange={handleChange}
-                  className={classes.selectEmpty}*/
-                  >
-                    <MenuItem value={'NULL'}>Denied</MenuItem>
-                    <MenuItem value={'TWO'}>2:00</MenuItem>
-                    <MenuItem value={'TWO_THIRTY'}>2:30</MenuItem>
-                    <MenuItem value={'THREE'}>3:00</MenuItem>
-                    <MenuItem value={'THREE_THIRTY'}>3:30</MenuItem>
-                    <MenuItem value={'FOUR'}>4:00</MenuItem>
-                    <MenuItem value={'FOUR_THIRTY'}>4:30</MenuItem>
-                    <MenuItem value={'FIVE'}>5:00</MenuItem>
-                    <MenuItem value={'FIVE_THIRTY'}>5:30</MenuItem>
-                    <MenuItem value={'SIX'}>6:00</MenuItem>
-                    <MenuItem value={'SIX_THIRTY'}>6:30</MenuItem>
-                    <MenuItem value={'SEVEN'}>7:00</MenuItem>
-                    <MenuItem value={'SEVEN_THIRTY'}>7:30</MenuItem>
-                    <MenuItem value={'EIGHT'}>8:00</MenuItem>
-                    <MenuItem value={'EIGHT_THIRTY'}>8:30</MenuItem>
-                    <MenuItem value={'NINE'}>9:00</MenuItem>
-                    <MenuItem value={'NINE_THIRTY'}>9:30</MenuItem>
-                    <MenuItem value={'TEN'}>10:00</MenuItem>
-                    <MenuItem value={'TEN_THIRTY'}>10:30</MenuItem>
-                    <MenuItem value={'ELEVEN'}>11:00</MenuItem>
-                    <MenuItem value={'ELEVEN_THIRTY'}>11:30</MenuItem>
-                  </Select>
-                  <FormHelperText>Required</FormHelperText>
-                </FormControl>
-              </Grid>
-              <Grid item xs>
-                <FormControl required variant="filled" className={classes.formControl}>
-                  <InputLabel id="set-day">Set Day</InputLabel>
-                  <Select
-                    labelId="set-day"
-                    id="set-day-required"
-                  /*value={age}
-                  onChange={handleChange}
-                  className={classes.selectEmpty}*/
-                  >
-                    <MenuItem value={'NULL'}>Denied</MenuItem>
-                    <MenuItem value={'FRIDAY'}>Friday</MenuItem>
-                    <MenuItem value={'SATURDAY'}>Saturday</MenuItem>
-                    <MenuItem value={'SUNDAY'}>Sunday</MenuItem>
-                  </Select>
-                  <FormHelperText>Required</FormHelperText>
-                </FormControl>
-              </Grid>
-              <Grid item xs>
-                <ThemeProvider theme={theme}>
-                <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                  <Button id='approve' color="primary">Approve</Button>
-                  <Button id='deny' color="secondary">Deny</Button>
-                </ButtonGroup>
-                </ThemeProvider>
-              </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
-        {/* <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-          donec massa sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-          facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-          tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-          consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-          vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-          hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-          tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-          nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-          accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography> */}
+        {(artists.length !== 0) ?
+          <div>
+            <h1>Performer stuff</h1>
+            {artists.map((m: any) => {
+              return <Card className="card" key={count++}>
+                <CardContent>
+                  <Grid container spacing={3}>
+                    <Grid item xs>
+                      <Typography>
+                        Name: {m["user"]["firstName"] + " " + m["user"]["lastName"]}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs>
+                      <Typography>
+                        Details: {m["details"]}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs>
+                      <FormControl required variant="filled" className={classes.formControl}>
+                        <InputLabel id="stage-name">Stage</InputLabel>
+                        <Select
+                          labelId="stage-name"
+                          id="stage-name-required"
+                          onChange={(e:any) => setStage(e.target.value)}
+                        >
+                          <MenuItem value={'AWAITING'}>Awaiting</MenuItem>
+                          <MenuItem value={'SONORA'}>Sonora</MenuItem>
+                          <MenuItem value={'YUMA'}>Yuma</MenuItem>
+                        </Select>
+                        <FormHelperText>Required</FormHelperText>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs>
+                      <FormControl required variant="filled" className={classes.formControl}>
+                        <InputLabel id="set-time">Set Time</InputLabel>
+                        <Select
+                          labelId="set-time"
+                          id="set-time-required"
+                          onChange={(e:any) => setTime(e.target.value)}
+                        >
+                          <MenuItem value={'NULL'}>Denied</MenuItem>
+                          <MenuItem value={'TWO'}>2:00</MenuItem>
+                          <MenuItem value={'TWO_THIRTY'}>2:30</MenuItem>
+                          <MenuItem value={'THREE'}>3:00</MenuItem>
+                          <MenuItem value={'THREE_THIRTY'}>3:30</MenuItem>
+                          <MenuItem value={'FOUR'}>4:00</MenuItem>
+                          <MenuItem value={'FOUR_THIRTY'}>4:30</MenuItem>
+                          <MenuItem value={'FIVE'}>5:00</MenuItem>
+                          <MenuItem value={'FIVE_THIRTY'}>5:30</MenuItem>
+                          <MenuItem value={'SIX'}>6:00</MenuItem>
+                          <MenuItem value={'SIX_THIRTY'}>6:30</MenuItem>
+                          <MenuItem value={'SEVEN'}>7:00</MenuItem>
+                          <MenuItem value={'SEVEN_THIRTY'}>7:30</MenuItem>
+                          <MenuItem value={'EIGHT'}>8:00</MenuItem>
+                          <MenuItem value={'EIGHT_THIRTY'}>8:30</MenuItem>
+                          <MenuItem value={'NINE'}>9:00</MenuItem>
+                          <MenuItem value={'NINE_THIRTY'}>9:30</MenuItem>
+                          <MenuItem value={'TEN'}>10:00</MenuItem>
+                          <MenuItem value={'TEN_THIRTY'}>10:30</MenuItem>
+                          <MenuItem value={'ELEVEN'}>11:00</MenuItem>
+                          <MenuItem value={'ELEVEN_THIRTY'}>11:30</MenuItem>
+                        </Select>
+                        <FormHelperText>Required</FormHelperText>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs>
+                      <FormControl required variant="filled" className={classes.formControl}>
+                        <InputLabel id="set-day">Set Day</InputLabel>
+                        <Select
+                          labelId="set-day"
+                          id="set-day-required"
+                        onChange={(e:any) => setDay(e.target.value)}
+                        >
+                          <MenuItem value={'NULL'}>Denied</MenuItem>
+                          <MenuItem value={'FRIDAY'}>Friday</MenuItem>
+                          <MenuItem value={'SATURDAY'}>Saturday</MenuItem>
+                          <MenuItem value={'SUNDAY'}>Sunday</MenuItem>
+                        </Select>
+                        <FormHelperText>Required</FormHelperText>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs>
+                      <ThemeProvider theme={theme}>
+                        <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                          <Button 
+                          id='approve' 
+                          color="primary" 
+                          onClick={() => submitApprove(m)}
+                          >Approve</Button>
+                          <Button 
+                          id='deny' 
+                          color="secondary"
+                          onClick={() => submitDeny(m)}
+                          >Deny</Button>
+                        </ButtonGroup>
+                      </ThemeProvider>
+                    </Grid>
+                  </Grid>
+                </CardContent>
+              </Card>
+            })}
+          </div>
+          : <h1>No Artist Applications</h1>}
       </main>
     </div>
   );

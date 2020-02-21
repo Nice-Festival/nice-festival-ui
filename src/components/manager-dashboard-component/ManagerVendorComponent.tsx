@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStyles, Theme, makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -23,6 +23,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Grid, FormControl, InputLabel, Select, MenuItem, FormHelperText, ButtonGroup } from '@material-ui/core';
+import { apiGetVendor } from '../remote/get-vendors';
 
 
 const drawerWidth = 240;
@@ -76,10 +77,21 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function ManagerVendorComponent() {
   const classes = useStyles();
+  let data: any = "";
+  let [vendors, setVendors] = useState([]);
+  let count = 0;
 
-  // const handleChange = () => {
-  //   setVendorTent(event.target.value);
-  // };
+  const getVendors = async () => {
+    if (vendors.length === 0) {
+      data = await apiGetVendor();
+      setVendors(data);
+      console.log(data);
+    }
+  }
+
+  useEffect(() => {
+    getVendors();
+  })
 
   return (
     <div className={classes.root}>
@@ -147,54 +159,60 @@ export default function ManagerVendorComponent() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <h1>Vendor stuff</h1>
-        <Card className="card">
-          <CardContent>
-            <Grid container spacing={3}>
-              <Grid item xs>
-                <Typography>
-                  Company Name goes here
+        {(vendors.length !== 0) ?
+          <div>
+            <h1>Vendor stuff</h1>
+            {vendors.map((m:any) => {
+            return <Card className="card" key={count++}>
+              <CardContent>
+                <Grid container spacing={3}>
+                  <Grid item xs>
+                    <Typography>
+                      Company Name: {m["companyName"]}
             </Typography>
-              </Grid>
-              <Grid item xs>
-                <Typography>
-                  Vendor Type goes here
+                  </Grid>
+                  <Grid item xs>
+                    <Typography>
+                      Vendor Type: {m["type"]}
             </Typography>
-              </Grid>
-              <Grid item xs>
-                <Typography>
-                  Details go here
+                  </Grid>
+                  <Grid item xs>
+                    <Typography>
+                      Details: {["details"]}
             </Typography>
-              </Grid>
-              <Grid item xs>
-                <FormControl required variant="filled" className={classes.formControl}>
-                  <InputLabel id="tent-name">Tent</InputLabel>
-                  <Select
-                    labelId="tent-name"
-                    id="tent-name-required"
-                  /*value={age}
-                  onChange={handleChange}
-                  className={classes.selectEmpty}*/
-                  >
-                    <MenuItem value={'AWAITING'}>Awaiting</MenuItem>
-                    <MenuItem value={'MOHAVE_TENT'}>Mohave</MenuItem>
-                    <MenuItem value={'SAHARA_TENT'}>Sahara</MenuItem>
-                    <MenuItem value={'OOGA_BOOGA_TENT'}>Ooga Booga</MenuItem>
-                  </Select>
-                  <FormHelperText>Required</FormHelperText>
-                </FormControl>
-              </Grid>
-              <Grid item xs>
-                <ThemeProvider theme={theme}>
-                  <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                    <Button id='approve' color="primary">Approve</Button>
-                    <Button id='deny' color="secondary">Deny</Button>
-                  </ButtonGroup>
-                </ThemeProvider>
-              </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
+                  </Grid>
+                  <Grid item xs>
+                    <FormControl required variant="filled" className={classes.formControl}>
+                      <InputLabel id="tent-name">Tent</InputLabel>
+                      <Select
+                        labelId="tent-name"
+                        id="tent-name-required"
+                      /*value={age}
+                      onChange={handleChange}
+                      className={classes.selectEmpty}*/
+                      >
+                        <MenuItem value={'AWAITING'}>Awaiting</MenuItem>
+                        <MenuItem value={'MOHAVE_TENT'}>Mohave</MenuItem>
+                        <MenuItem value={'SAHARA_TENT'}>Sahara</MenuItem>
+                        <MenuItem value={'OOGA_BOOGA_TENT'}>Ooga Booga</MenuItem>
+                      </Select>
+                      <FormHelperText>Required</FormHelperText>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs>
+                    <ThemeProvider theme={theme}>
+                      <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                        <Button id='approve' color="primary">Approve</Button>
+                        <Button id='deny' color="secondary">Deny</Button>
+                      </ButtonGroup>
+                    </ThemeProvider>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
+            })}
+          </div>
+      : <h1>No Vendor Applications</h1>}
       </main>
     </div>
   );
