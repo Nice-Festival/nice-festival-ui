@@ -87,7 +87,7 @@ export default function ManagerPerformerListComponent(props:any) {
     await apiManageArtist(artists, stage, time, day, status)
   }
 
-  const submitApprove = (artist:any) => {
+  const submitApprove = async (artist:any) => {
     setStatus("APPROVED");
     console.log(artist);
     console.log(stage);
@@ -97,13 +97,24 @@ export default function ManagerPerformerListComponent(props:any) {
 
     
     apiManageArtist(artist, stage, time, day, "APPROVED")
-    getArtists();
+    data = await getArtists();
+    setArtists([]);
+    setStage("")
+    setStatus("")
+    setDay("");
+    setTime("")
   }
 
-  const submitDeny = (artist:any) => {
+  const submitDeny = async (artist:any) => {
     console.log(artist)
     apiManageArtist(artist, stage, time, day, "DENIED")
     getArtists();
+    data = await getArtists();
+    setArtists([]);
+    setStage("")
+    setStatus("")
+    setDay("");
+    setTime("")
   }
 
   const getArtists = async () => {

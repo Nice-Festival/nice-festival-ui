@@ -88,7 +88,7 @@ export default function PerformerApplyComponent(props: any) {
         }
         if(applied === false){
             await apiArtistApply(currentUser, details);
-            props.history.push("performer");
+            props.history.push("per-status");
 
         }
         if(applied === true){

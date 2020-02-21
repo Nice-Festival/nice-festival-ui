@@ -79,27 +79,34 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function ManagerVendorComponent(props:any) {
   const classes = useStyles();
-  let data: any = "";
+  let data:any;
   let [vendors, setVendors] = useState([]);
   let [tent, setTent] = useState("");
   let [status, setStatus] = useState("");
   let count = 0;
 
-  const submitApprove = (vendor:any) => {
+  const submitApprove = async (vendor:any) => {
     setStatus("APPROVED");
     console.log(vendor);
     console.log(tent);
     console.log(status);
-
-    
     apiManageVendor(vendor, tent, "APPROVED")
-    getVendors();
+    // getVendors();
+    data = await getVendors();
+    setVendors([]);
+    setTent("")
+    setStatus("")
   }
 
-  const submitDeny = (vendor:any) => {
+  const submitDeny = async (vendor:any) => {
     console.log(vendor)
     apiManageVendor(vendor, tent, "DENIED")
-    getVendors();
+    // getVendors();
+    // props.history.push("man-vendor")
+    data = await getVendors();
+    setVendors([]);
+    setTent("")
+    setStatus("")
   }
 
   const getVendors = async () => {

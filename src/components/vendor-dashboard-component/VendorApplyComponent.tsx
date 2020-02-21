@@ -73,9 +73,6 @@ export default function VendorApplyComponent(props:any) {
     const submitApplication = async () => {
         let data = await apiGetVendor();
         let vendor:any = data;
-        console.log(type);
-        console.log(type);
-        console.log(vendor);
         for (let index = 0; index < vendor.length; index++) {
             if(vendor[index]["user"]["id"] === currentUser["id"]){
                 console.log("can't apply again");
@@ -86,7 +83,8 @@ export default function VendorApplyComponent(props:any) {
         }
         if(applied === false){
             await apiVendorApply(currentUser, name, details, type)
-            props.history.push("/vendor")
+            console.log("ran");
+            props.history.push("/ven-status")
             applied = true;
         }
         else if(applied === true){

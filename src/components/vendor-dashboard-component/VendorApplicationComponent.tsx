@@ -64,6 +64,7 @@ export default function VendorApplicationComponent(props:any) {
     let [vendors, setVendors] = useState([]);
     let data:any;
     let count = 0;
+    let counter = 0;
     
     const getVendors = async () => {
         if (vendors.length === 0) {
@@ -180,6 +181,14 @@ export default function VendorApplicationComponent(props:any) {
                             </Typography> */}
                         </CardContent>
                     </Card>
+                    }else if(arr["user"]["id"] !== currentUser["id"] && counter !== vendors.length -1){
+                        ++counter;
+                        console.log(vendors.length);
+                        console.log(counter);
+                    }
+                    else if(counter === vendors.length -1){
+                        console.log("ran");
+                        return <h1>You have not applied yet!</h1>
                     }
                 })
                 : <h1>You have not applied yet!</h1>}

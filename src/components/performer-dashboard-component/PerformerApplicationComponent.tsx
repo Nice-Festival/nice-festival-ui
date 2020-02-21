@@ -65,6 +65,7 @@ export default function PerformerApplicationComponent(props:any) {
     let artist:any
     let data:any;
     let count = 0;
+    let counter = 0;
     let [artists, setArtists] = useState([]);
     
 
@@ -183,6 +184,14 @@ export default function PerformerApplicationComponent(props:any) {
                                 </Typography> */}
                             </CardContent>
                         </Card>
+                        } else if(arr["user"]["id"] !== currentUser["id"] && counter !== artists.length -1){
+                            ++counter;
+                            console.log(artists.length);
+                            console.log(counter);
+                        }
+                        else if(counter === artists.length -1){
+                            console.log("ran");
+                            return <h1>You have not applied yet!</h1>
                         }
                     })
                 : <h1>You have not applied yet!</h1>}
