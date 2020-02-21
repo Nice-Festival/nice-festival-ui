@@ -6,7 +6,7 @@ import {
 } from 'reactstrap';
 
 import "./tickets.css";
-import {apiMakePayment} from '../remote/procees-payment'
+import { apiMakePayment } from '../remote/procees-payment'
 import { CheckoutComponet } from '../checkout-component/CheckoutComponent';
 
 
@@ -16,6 +16,10 @@ export class TicketsComponent extends React.Component<any, any> {
     buy = () => {
         apiMakePayment();
         this.props.history.push("/");
+    }
+    
+    goBack = () => {
+        this.props.history.push("customer");
     }
 
     render() {
@@ -30,16 +34,16 @@ export class TicketsComponent extends React.Component<any, any> {
                             <CardTitle>$50.00</CardTitle>
                             <CardSubtitle>Weekend Pass</CardSubtitle>
                             <CardText>This ticket providers access to the festival grounds for the full weekend.</CardText>
-                            <Button 
-                            onClick={this.buy}
-                            id="50ticket">Buy Ticket</Button>
+                            <Button
+                                onClick={this.buy}
+                                id="50ticket">Buy Ticket</Button>
                         </CardBody>
                     </Card>
-
-
-
                     <div>
                         <CheckoutComponet />
+                        <button
+                        onClick={this.goBack}
+                        >Go back dashboard</button>
                     </div>
                 </div>
             </div>
