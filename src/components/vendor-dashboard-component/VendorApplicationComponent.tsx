@@ -23,6 +23,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import "./vendor-inbox.css";
 import {store} from '../../Store';
+import { apiGetVendor } from '../remote/get-vendors';
 
 const drawerWidth = 240;
 
@@ -60,11 +61,24 @@ export default function VendorApplicationComponent(props:any) {
     const classes = useStyles();
     const appState = store.getState();
     let currentUser = appState.userState.currentUser;
-
+    let [vendors, setVendors] = useState([]);
+    let data:any;
+    let count = 0;
+    
+    const getVendors = async () => {
+        if (vendors.length === 0) {
+          data = await apiGetVendor();
+          setVendors(data)
+        }
+        // formData = messages[0]["message"]
+        console.log(vendors);
+        return vendors;
+      }
     useEffect(() => {
         if(currentUser === null){
             props.history.push("/")
         }
+        getVendors();
   });
 
   const logout = () => {
@@ -144,16 +158,21 @@ export default function VendorApplicationComponent(props:any) {
                 {/* implement later */}
                 {/* {(true) ? '': ''} */}
                 <h1>Vendor Application</h1>
-                <Card className="card">
+                
+                    
+                {(vendors.length !== 0) ? 
+                vendors.map(arr => {
+                    if(arr["user"]["id"] === currentUser["id"]){
+                    return  <Card className="card" key={count++}>
                         <CardContent>
                             <Typography className="ticket-info" color="textSecondary" gutterBottom>
-                                Vendor Name
+                                Company Name: {arr["companyName"]}
                             </Typography>
                             <Typography className="quantity" variant="h5" component="h2">
-                                Tent: Awaiting
+                                Tent: {arr["tent"]}
                             </Typography>
                             <Typography className="shipping" color="textSecondary">
-                                Vendor Status: Pending
+                                Vendor Status: {arr["status"]}
                             </Typography>
                             {/* <Typography variant="body2" component="p">
                                 well meaning and kindly.
@@ -161,6 +180,10 @@ export default function VendorApplicationComponent(props:any) {
                             </Typography> */}
                         </CardContent>
                     </Card>
+                    }
+                })
+                : <h1>You have not applied yet!</h1>}
+                
             </main>
         </div>
     );

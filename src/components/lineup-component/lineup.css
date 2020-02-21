@@ -2,3 +2,7 @@
     text-align: center;
     list-style: none;
 }
+
+#mainContent{
+    min-height: 20vh !important;
+}
