@@ -8,5 +8,9 @@ CardImg{
 #ticket{
     border-radius: 10px;
     border-color: chartreuse;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
 }

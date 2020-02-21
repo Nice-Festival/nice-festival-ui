@@ -104,6 +104,14 @@ export default function CustomerDashboardComponent(props:any) {
                         </ListItem>
                     </Link>
                 </List>
+                <List>
+                    <Link to='/tickets'>
+                        <ListItem button key={'Purchase'}>
+                            <ListItemIcon><HomeIcon /></ListItemIcon>
+                            <ListItemText primary={'Purchase'} />
+                        </ListItem>
+                    </Link>
+                </List>
                 <Divider />
                 <ListItem 
                 onClick={logout}
@@ -125,24 +133,6 @@ export default function CustomerDashboardComponent(props:any) {
                 <div className={classes.toolbar} />
                 <FabComponent />
                 <Container id="mainContent" maxWidth="md">
-                    <Card className="cardContent">
-                        <CardContent>
-                            <Typography className="ticket-info" color="textSecondary" gutterBottom>
-                                Customer Ticket Info
-                            </Typography>
-                            <Typography className="quantity" variant="h5" component="h2">
-                                Quantity: 0
-                            </Typography>
-                            <Typography className="shipping" color="textSecondary">
-                                Shipping Status: No Ticket Purchased
-                            </Typography>
-                            {/* <Typography variant="body2" component="p">
-                                well meaning and kindly.
-                                <br />
-                            </Typography> */}
-                        </CardContent>
-                    </Card>
-                    <Divider/>
                     <p id="locationTitle">Festival Location</p>
                     <Divider/>
                     <p>Venue Name: City Park</p>
