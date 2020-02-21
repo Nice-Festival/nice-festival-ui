@@ -230,7 +230,7 @@ export default function ManagerVendorComponent(props:any) {
                       onChange={(e:any) => setTent(e.target.value)}
                       >
                         <MenuItem value={'AWAITING'}>Awaiting</MenuItem>
-                        <MenuItem value={'MOHAVE_TENT'}>Mohave</MenuItem>
+                        <MenuItem value={'MOJAVE_TENT'}>Mohave</MenuItem>
                         <MenuItem value={'SAHARA_TENT'}>Sahara</MenuItem>
                         <MenuItem value={'OOGA_BOOGA_TENT'}>Ooga Booga</MenuItem>
                       </Select>
