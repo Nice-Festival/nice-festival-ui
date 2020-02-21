@@ -201,6 +201,8 @@ export default function ManagerVendorComponent(props:any) {
           <div>
             <h1>Vendor stuff</h1>
             {vendors.map((m:any) => {
+            if(m["status"] === "PENDING"){
+
             return <Card className="card" key={count++}>
               <CardContent>
                 <Grid container spacing={3}>
@@ -254,6 +256,7 @@ export default function ManagerVendorComponent(props:any) {
                 </Grid>
               </CardContent>
             </Card>
+            }
             })}
           </div>
       : <h1>No Vendor Applications</h1>}

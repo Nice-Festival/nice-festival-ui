@@ -206,6 +206,7 @@ export default function ManagerPerformerListComponent(props:any) {
           <div>
             <h1>Performer stuff</h1>
             {artists.map((m: any) => {
+            if(m["status"] === "PENDING"){
               return <Card className="card" key={count++}>
                 <CardContent>
                   <Grid container spacing={3}>
@@ -302,6 +303,7 @@ export default function ManagerPerformerListComponent(props:any) {
                   </Grid>
                 </CardContent>
               </Card>
+            }
             })}
           </div>
           : <h1>No Artist Applications</h1>}
