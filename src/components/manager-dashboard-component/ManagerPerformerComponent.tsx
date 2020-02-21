@@ -102,8 +102,7 @@ export default function ManagerPerformerListComponent(props:any) {
 
   const submitDeny = (artist:any) => {
     console.log(artist)
-    setStatus("DENIED");
-    manageArtist();
+    apiManageArtist(artist, stage, time, day, "DENIED")
     getArtists();
   }
 
@@ -229,8 +228,8 @@ export default function ManagerPerformerListComponent(props:any) {
                           onChange={(e:any) => setStage(e.target.value)}
                         >
                           <MenuItem value={'AWAITING'}>Awaiting</MenuItem>
-                          <MenuItem value={'SONORA'}>Sonora</MenuItem>
-                          <MenuItem value={'YUMA'}>Yuma</MenuItem>
+                          <MenuItem value={'SONORA_STAGE'}>Sonora</MenuItem>
+                          <MenuItem value={'YUMA_STAGE'}>Yuma</MenuItem>
                         </Select>
                         <FormHelperText>Required</FormHelperText>
                       </FormControl>
@@ -243,7 +242,7 @@ export default function ManagerPerformerListComponent(props:any) {
                           id="set-time-required"
                           onChange={(e:any) => setTime(e.target.value)}
                         >
-                          <MenuItem value={'NULL'}>Denied</MenuItem>
+                          <MenuItem value={"NO"}>Denied</MenuItem>
                           <MenuItem value={'TWO'}>2:00</MenuItem>
                           <MenuItem value={'TWO_THIRTY'}>2:30</MenuItem>
                           <MenuItem value={'THREE'}>3:00</MenuItem>
@@ -276,7 +275,7 @@ export default function ManagerPerformerListComponent(props:any) {
                           id="set-day-required"
                         onChange={(e:any) => setDay(e.target.value)}
                         >
-                          <MenuItem value={'NULL'}>Denied</MenuItem>
+                          <MenuItem value={"NO"}>Denied</MenuItem>
                           <MenuItem value={'FRIDAY'}>Friday</MenuItem>
                           <MenuItem value={'SATURDAY'}>Saturday</MenuItem>
                           <MenuItem value={'SUNDAY'}>Sunday</MenuItem>

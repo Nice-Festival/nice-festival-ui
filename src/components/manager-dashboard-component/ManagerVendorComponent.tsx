@@ -24,6 +24,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Grid, FormControl, InputLabel, Select, MenuItem, FormHelperText, ButtonGroup } from '@material-ui/core';
 import { apiGetVendor } from '../remote/get-vendors';
+import { apiManageVendor } from '../remote/manage-vendor';
 import {store} from '../../Store';
 
 
@@ -80,7 +81,26 @@ export default function ManagerVendorComponent(props:any) {
   const classes = useStyles();
   let data: any = "";
   let [vendors, setVendors] = useState([]);
+  let [tent, setTent] = useState("");
+  let [status, setStatus] = useState("");
   let count = 0;
+
+  const submitApprove = (vendor:any) => {
+    setStatus("APPROVED");
+    console.log(vendor);
+    console.log(tent);
+    console.log(status);
+
+    
+    apiManageVendor(vendor, tent, "APPROVED")
+    getVendors();
+  }
+
+  const submitDeny = (vendor:any) => {
+    console.log(vendor)
+    apiManageVendor(vendor, tent, "DENIED")
+    getVendors();
+  }
 
   const getVendors = async () => {
     if (vendors.length === 0) {
@@ -196,7 +216,7 @@ export default function ManagerVendorComponent(props:any) {
                   </Grid>
                   <Grid item xs>
                     <Typography>
-                      Details: {["details"]}
+                      Details: {m["details"]}
             </Typography>
                   </Grid>
                   <Grid item xs>
@@ -205,9 +225,7 @@ export default function ManagerVendorComponent(props:any) {
                       <Select
                         labelId="tent-name"
                         id="tent-name-required"
-                      /*value={age}
-                      onChange={handleChange}
-                      className={classes.selectEmpty}*/
+                      onChange={(e:any) => setTent(e.target.value)}
                       >
                         <MenuItem value={'AWAITING'}>Awaiting</MenuItem>
                         <MenuItem value={'MOHAVE_TENT'}>Mohave</MenuItem>
@@ -220,8 +238,16 @@ export default function ManagerVendorComponent(props:any) {
                   <Grid item xs>
                     <ThemeProvider theme={theme}>
                       <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                        <Button id='approve' color="primary">Approve</Button>
-                        <Button id='deny' color="secondary">Deny</Button>
+                        <Button 
+                        id='approve' 
+                        color="primary"
+                        onClick={() => submitApprove(m)}
+                        >Approve</Button>
+                        <Button 
+                        id='deny' 
+                        color="secondary"
+                        onClick={() => submitDeny(m)}
+                        >Deny</Button>
                       </ButtonGroup>
                     </ThemeProvider>
                   </Grid>
