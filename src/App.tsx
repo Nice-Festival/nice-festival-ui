@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginComponent  from './components/login-component/LoginContainer';
-import { HomeComponent } from './components/home-component/HomeComponent';
+import HomeComponent from './components/home-component/HomeContainer';
 import {RegisterComponent}  from './components/register-component/RegisterComponent';
 import CustomerDashboardComponent from './components/customer-dashboard-component/CustomerDashboardComponent';
 // import VendorDashboardComponent from './components/vendor-dashboard-component/VendorDashboardComponent';
@@ -39,7 +39,7 @@ const App: React.FC = () => {
             <Route path="/customer" component={CustomerDashboardComponent} />
             {/* <Route path="/add-to-schedule" component={CustomerAddComponent} /> */}
             {/* <Route path="/personal-schedule" component={CustomerPersonalComponent} /> */}
-            <Route path="/cust-inbox" component={CustomerInboxComponent} />
+            {/* <Route path="/cust-inbox" component={CustomerInboxComponent} /> */}
             {/* <Route path="/vendor" component={VendorDashboardComponent} /> */}
             <Route path="/ven-apply" component={VendorApplyComponent} />
             <Route path="/ven-status" component={VendorApplicationComponent} />

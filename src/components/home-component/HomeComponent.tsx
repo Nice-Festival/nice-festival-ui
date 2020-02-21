@@ -5,7 +5,15 @@ import { Container } from '@material-ui/core';
 import { FooterComponent } from '../footer/FooterComponen';
 
 
-export class HomeComponent extends React.Component {
+export class HomeComponent extends React.Component<any, any> {
+    constructor(props: any) {
+        super(props)
+    }
+   
+    componentDidMount(){
+        this.props.updateCurrentUser("", "", true)
+    }
+
     render() {
         return (
             <div>

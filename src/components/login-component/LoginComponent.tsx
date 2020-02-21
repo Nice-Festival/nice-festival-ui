@@ -39,7 +39,7 @@ export class LoginComponent extends React.Component<any,ILoginState> {
 
     submitLogin = async (event: SyntheticEvent) => {
         event.preventDefault()
-        await this.props.updateCurrentUser(this.state.username, this.state.password)
+        await this.props.updateCurrentUser(this.state.username, this.state.password, false)
         console.log(this.props.currentUser);
         if(this.props.currentUser === null){
             console.log("You are not a user");

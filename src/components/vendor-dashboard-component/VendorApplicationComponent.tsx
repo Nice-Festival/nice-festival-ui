@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -22,6 +22,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import "./vendor-inbox.css";
+import {store} from '../../Store';
+
 const drawerWidth = 240;
 
 
@@ -54,8 +56,21 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function VendorApplicationComponent() {
+export default function VendorApplicationComponent(props:any) {
     const classes = useStyles();
+    const appState = store.getState();
+    let currentUser = appState.userState.currentUser;
+
+    useEffect(() => {
+        if(currentUser === null){
+            props.history.push("/")
+        }
+  });
+
+  const logout = () => {
+    props.history.push("/")
+  }
+    
 
     return (
         <div className={classes.root}>
@@ -108,7 +123,9 @@ export default function VendorApplicationComponent() {
 
                 </List>
                 <Divider />
-                <ListItem button key={'Logout'}>
+                <ListItem 
+                onClick={logout}
+                button key={'Logout'}>
                     <ListItemIcon><ExitToAppIcon /></ListItemIcon>
                     <ListItemText primary="Logout" />
                 </ListItem>

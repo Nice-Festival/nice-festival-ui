@@ -20,6 +20,8 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent, FormControl, InputLabel, Select, MenuItem, FormHelperText, ButtonGroup, Button, Grid } from '@material-ui/core';
 import { apiGetArtist } from '../remote/get-artist';
 import { apiManageArtist } from '../remote/manage-artist';
+import {store} from '../../Store';
+
 
 
 const drawerWidth = 240;
@@ -71,7 +73,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function ManagerPerformerListComponent() {
+export default function ManagerPerformerListComponent(props:any) {
   const classes = useStyles();
   let data: any = "";
   let [artists, setArtists] = useState([]);
@@ -116,6 +118,21 @@ export default function ManagerPerformerListComponent() {
   useEffect(() => {
     getArtists();
   })
+  const appState = store.getState();
+  let currentUser = appState.userState.currentUser;
+
+  useEffect(() => {
+    if(currentUser === null){
+      props.history.push("/")
+  } else if(currentUser["role"] !== "MANAGER"){
+    props.history.push("/")
+
+  }
+  })
+
+  const logout = () => {
+    props.history.push("/")
+  }
 
   return (
     <div className={classes.root}>
@@ -168,9 +185,11 @@ export default function ManagerPerformerListComponent() {
 
         </List>
         <Divider />
-        <ListItem button key={'Logout'}>
-          <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-          <ListItemText primary="Logout" />
+        <ListItem 
+        onClick={logout}
+        button key={'Logout'}>
+        <ListItemIcon><ExitToAppIcon/></ListItemIcon>
+        <ListItemText primary="Logout"/>
         </ListItem>
         {/* <Divider />
         <List>

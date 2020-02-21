@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -22,6 +22,7 @@ import "./customer.css";
 import FabComponent from '../fab/FabComponent';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import {store} from '../../Store';
 
 
 
@@ -60,8 +61,20 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 
-export default function CustomerDashboardComponent() {
+export default function CustomerDashboardComponent(props:any) {
     const classes = useStyles();
+    const appState = store.getState();
+    let currentUser = appState.userState.currentUser;
+
+    useEffect(() => {
+        if(currentUser === null){
+            props.history.push("/")
+        }
+  });
+
+    const logout = () => {
+        props.history.push("/")
+      }
 
     return (
         <div className={classes.root}>
@@ -90,16 +103,19 @@ export default function CustomerDashboardComponent() {
                             <ListItemText primary={'Home'} />
                         </ListItem>
                     </Link>
-
-                    <Link to="/cust-inbox">
-                        <ListItem button key={'Inbox'}>
-                            <ListItemIcon><InboxIcon /></ListItemIcon>
-                            <ListItemText primary={'Inbox'} />
+                </List>
+                <List>
+                    <Link to='/tickets'>
+                        <ListItem button key={'Purchase'}>
+                            <ListItemIcon><HomeIcon /></ListItemIcon>
+                            <ListItemText primary={'Purchase'} />
                         </ListItem>
                     </Link>
                 </List>
                 <Divider />
-                <ListItem button key={'Logout'}>
+                <ListItem 
+                onClick={logout}
+                button key={'Logout'}>
                     <ListItemIcon><ExitToAppIcon /></ListItemIcon>
                     <ListItemText primary="Logout" />
                 </ListItem>
@@ -117,24 +133,6 @@ export default function CustomerDashboardComponent() {
                 <div className={classes.toolbar} />
                 <FabComponent />
                 <Container id="mainContent" maxWidth="md">
-                    <Card className="cardContent">
-                        <CardContent>
-                            <Typography className="ticket-info" color="textSecondary" gutterBottom>
-                                Customer Ticket Info
-                            </Typography>
-                            <Typography className="quantity" variant="h5" component="h2">
-                                Quantity: 0
-                            </Typography>
-                            <Typography className="shipping" color="textSecondary">
-                                Shipping Status: No Ticket Purchased
-                            </Typography>
-                            {/* <Typography variant="body2" component="p">
-                                well meaning and kindly.
-                                <br />
-                            </Typography> */}
-                        </CardContent>
-                    </Card>
-                    <Divider/>
                     <p id="locationTitle">Festival Location</p>
                     <Divider/>
                     <p>Venue Name: City Park</p>

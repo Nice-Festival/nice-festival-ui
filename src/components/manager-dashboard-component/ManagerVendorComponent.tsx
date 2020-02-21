@@ -24,6 +24,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Grid, FormControl, InputLabel, Select, MenuItem, FormHelperText, ButtonGroup } from '@material-ui/core';
 import { apiGetVendor } from '../remote/get-vendors';
+import {store} from '../../Store';
 
 
 const drawerWidth = 240;
@@ -75,7 +76,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function ManagerVendorComponent() {
+export default function ManagerVendorComponent(props:any) {
   const classes = useStyles();
   let data: any = "";
   let [vendors, setVendors] = useState([]);
@@ -92,6 +93,21 @@ export default function ManagerVendorComponent() {
   useEffect(() => {
     getVendors();
   })
+  const appState = store.getState();
+  let currentUser = appState.userState.currentUser;
+
+  useEffect(() => {
+    if(currentUser === null){
+      props.history.push("/")
+  } else if(currentUser["role"] !== "MANAGER"){
+    props.history.push("/")
+
+  }
+  })
+
+  const logout = () => {
+    props.history.push("/")
+  }
 
   return (
     <div className={classes.root}>
@@ -143,9 +159,11 @@ export default function ManagerVendorComponent() {
           </Link>
         </List>
         <Divider />
-        <ListItem button key={'Logout'}>
-          <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-          <ListItemText primary="Logout" />
+        <ListItem 
+        onClick={logout}
+        button key={'Logout'}>
+        <ListItemIcon><ExitToAppIcon/></ListItemIcon>
+        <ListItemText primary="Logout"/>
         </ListItem>
         {/* <Divider />
         <List>
