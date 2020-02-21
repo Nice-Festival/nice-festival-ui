@@ -39,7 +39,7 @@ export class LoginComponent extends React.Component<any,ILoginState> {
 
     submitLogin = async (event: SyntheticEvent) => {
         event.preventDefault()
-        await this.props.updateCurrentUser(this.state.username, this.state.password)
+        await this.props.updateCurrentUser(this.state.username, this.state.password, false)
         console.log(this.props.currentUser);
         if(this.props.currentUser === null){
             console.log("You are not a user");
@@ -51,14 +51,15 @@ export class LoginComponent extends React.Component<any,ILoginState> {
             }
             else if(this.props.currentUser["role"] === "VENDOR"){
                 console.log("Vendor");
-                this.props.history.push("/vendor")
+                this.props.history.push("/ven-status")
 
             }
             else if(this.props.currentUser["role"] === "MANAGER"){
+                this.props.history.push("/man-inbox")
             }
             else if(this.props.currentUser["role"] === "ARTIST"){
                 console.log("Artist");
-                this.props.history.push("/performer")
+                this.props.history.push("/per-status")
 
             }
         }
@@ -66,16 +67,16 @@ export class LoginComponent extends React.Component<any,ILoginState> {
 
     render() {
         return (
-            <div id="content">
+            <div id="loginContent">
                 <NavbarComponent id="nav" />
                 <div id="login-body">
                     <div className="login">
                         <div>
                             <h1>Login</h1>
-                            Email:
+                            Username:
                         <input 
-                        type="email" 
-                        placeholder="jdoe@gmail.com" 
+                        type="text" 
+                        placeholder="jdoe" 
                         className="txtb" 
                         onChange={this.updateUsername}
                         />

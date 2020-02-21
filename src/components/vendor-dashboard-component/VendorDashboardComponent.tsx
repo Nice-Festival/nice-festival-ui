@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,6 +15,8 @@ import ContactMailIcon from '@material-ui/icons/ContactMail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
 import { Link } from 'react-router-dom';
+import {store} from '../../Store';
+
 
 
 const drawerWidth = 240;
@@ -51,7 +53,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function VendorDashboardComponent() {
     const classes = useStyles();
-
+    const appState = store.getState();
+    let currentUser = appState.userState.currentUser;
+    const logOut = () => {
+        console.log(currentUser);
+        currentUser = null;
+        console.log(currentUser);
+    }
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -103,7 +111,9 @@ export default function VendorDashboardComponent() {
 
                 </List>
                 <Divider />
-                <ListItem button key={'Logout'}>
+                <ListItem 
+                onClick={logOut}
+                button key={'Logout'}>
                     <ListItemIcon><ExitToAppIcon /></ListItemIcon>
                     <ListItemText primary="Logout" />
                 </ListItem>

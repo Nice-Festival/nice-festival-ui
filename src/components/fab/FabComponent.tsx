@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -8,12 +8,18 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import EmailRounded from '@material-ui/icons/EmailRounded';
 import Fab from '@material-ui/core/Fab';
 import "./fab.css";
+import {store} from '../../Store';
+import {apiSendMessage} from "../remote/send-message";
 require('dotenv').config({ path: '../../../process.env' })
 
 
 
-export default function FabComponent() {
+export default function FabComponent(props:any) {
   const [open, setOpen] = React.useState(false);
+  const appState = store.getState();
+  let currentUser = appState.userState.currentUser;
+  let [message, setMessage] = useState("");
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -22,6 +28,11 @@ export default function FabComponent() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const sendMessage = async () => {
+      await apiSendMessage(currentUser, message)
+      handleClose();
+  }
 
   return (
     <div>
@@ -34,27 +45,21 @@ export default function FabComponent() {
           {/* <DialogContentText>
            Subject
           </DialogContentText> */}
-          <TextField
-            autoFocus
-            margin="dense"
-            id="subject"
-            label="Subject "
-            type="text"
-            fullWidth
-          />
+      
            <TextField
             margin="dense"
             id="message"
             label="Message"
             type="text"
             fullWidth
+            onChange={(e) => setMessage(e.target.value)}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={sendMessage} color="primary">
             Send
           </Button>
         </DialogActions>

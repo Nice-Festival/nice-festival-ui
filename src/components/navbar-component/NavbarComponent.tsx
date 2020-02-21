@@ -32,6 +32,9 @@ export const NavbarComponent = (props: any) => {
             <NavItem>
               <Link className="link" to='/lineup'>Lineup</Link>
             </NavItem>
+            <NavItem>
+              <Link className="link" to='/inquiry'>Contact</Link>
+            </NavItem>
         </Nav>
       </Navbar>
     </div>

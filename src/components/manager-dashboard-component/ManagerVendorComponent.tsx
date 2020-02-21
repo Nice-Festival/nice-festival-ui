@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -22,6 +22,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {store} from '../../Store';
 
 
 const drawerWidth = 240;
@@ -56,8 +57,23 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function ManagerVendorComponent() {
+export default function ManagerVendorComponent(props:any) {
   const classes = useStyles();
+  const appState = store.getState();
+  let currentUser = appState.userState.currentUser;
+
+  useEffect(() => {
+    if(currentUser === null){
+      props.history.push("/")
+  } else if(currentUser["role"] !== "MANAGER"){
+    props.history.push("/")
+
+  }
+  })
+
+  const logout = () => {
+    props.history.push("/")
+  }
 
   return (
     <div className={classes.root}>
@@ -109,7 +125,9 @@ export default function ManagerVendorComponent() {
                     </Link>
         </List>
         <Divider />
-        <ListItem button key={'Logout'}>
+        <ListItem 
+        onClick={logout}
+        button key={'Logout'}>
         <ListItemIcon><ExitToAppIcon/></ListItemIcon>
         <ListItemText primary="Logout"/>
         </ListItem>
@@ -126,34 +144,7 @@ export default function ManagerVendorComponent() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <h1>Vendor stuff</h1>
-        <Card className="test">
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Contemplative Reptile"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
-    </Card>
+       
       </main>
     </div>
   );

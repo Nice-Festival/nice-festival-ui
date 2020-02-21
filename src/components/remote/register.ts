@@ -58,48 +58,7 @@ export const apiRegister = async (username: string, password: string, firstName:
                     }
                 }
             }
-            // else if (body["role"] == "VENDOR") {
-
-            //     try {
-            //         const response2 = await axios.post('http://localhost:8080/nice-festival/register/customer', {
-            //             "address": "null",
-            //             "city": "null",
-            //             "state": "null",
-            //             "user": {
-            //                 "id": body["id"],
-            //                 "username": body["username"],
-            //                 "password": body["password"],
-            //                 "firstName": body["firstName"],
-            //                 "lastName": body["lastName"],
-            //                 "email": body["email"],
-            //                 "role": body["role"]
-            //             }
-            //         });
-            //         if(response2.status == 200){
-            //             const body1 = await response.data
-            //         }
-            //         else if (response2.status === 500) {
-            //             return {
-            //                 message: "Failed to register you!",
-            //                 body: null
-            //             }
-            //         } else {
-            //             return {
-            //                 message: "Something Went Wrong",
-            //                 body: null
-            //             }
-            //         }
-            //     } catch (e) {
-            //         console.log(e);
-            //         return {
-            //             registerMessage: "Something Went Wrong",
-            //         }
-            //     }
-
-            // }
-            // else if (body["role"] == "ARTIST") {
-
-            // }
+           
             return {
                 body,
                 message: 'You have been registered!'

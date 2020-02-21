@@ -82,6 +82,7 @@ export class RegisterComponent extends React.Component<any, IRegisterState> {
             this.state.email,
             this.state.role
             );
+            this.props.history.push("login");
     }
 
     render() {

@@ -7,9 +7,9 @@
 #login-body{
     margin: 0 !important;
     padding: 0 !important;
-    background: #F68E5F;
+    background: #FFF;
     height: 90vh !important;
-    font-size: .8rem;
+    font-size: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -21,6 +21,12 @@ import CardContent from '@material-ui/core/CardContent';
 import EmailIcon from '@material-ui/icons/Email'
 import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 import './manager-inbox.css';
+import { apiGetMessages } from "../remote/get-messages";
+
+import {store} from '../../Store';
+
+
+
 const drawerWidth = 240;
 
 
@@ -53,8 +59,40 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function ManagerInboxComponent() {
+export default function ManagerInboxComponent(props:any) {
   const classes = useStyles();
+  let data: any = "";
+  let sortedMessages = [];
+  let [messages, setMessages] = useState([]);
+  let count = 0;
+  const appState = store.getState();
+  let currentUser = appState.userState.currentUser;
+
+  // let formData:any = ""
+  const getMessages = async () => {
+    if (messages.length === 0) {
+      data = await apiGetMessages();
+      setMessages(data)
+    }
+    // formData = messages[0]["message"]
+    console.log(messages);
+    return messages;
+
+  }
+
+  useEffect(() => {
+    if(currentUser === null){
+      props.history.push("/")
+  } else if(currentUser["role"] !== "MANAGER"){
+    props.history.push("/")
+
+  }
+    getMessages();
+  })
+
+  const logout = () => {
+    props.history.push("/")
+  }
 
   return (
     <div className={classes.root}>
@@ -77,39 +115,41 @@ export default function ManagerInboxComponent() {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-                    {/* <Link to='/manager'>
+          {/* <Link to='/manager'>
                         <ListItem button key={'Home'}>
                             <ListItemIcon><HomeIcon /></ListItemIcon>
                             <ListItemText primary={'Home'} />
                         </ListItem>
                     </Link> */}
 
-                    <Link to="/man-inbox">
-                        <ListItem button key={'Inbox'}>
-                            <ListItemIcon><InboxIcon /></ListItemIcon>
-                            <ListItemText primary={'Inbox'} />
-                        </ListItem>
-                    </Link>
+          <Link to="/man-inbox">
+            <ListItem button key={'Inbox'}>
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText primary={'Inbox'} />
+            </ListItem>
+          </Link>
 
-                    <Link to="/man-vendor">
-                        <ListItem button key={'Vendor Applications'}>
-                            <ListItemIcon><MailIcon /></ListItemIcon>
-                            <ListItemText primary={'Vendor Applications'} />
-                        </ListItem>
-                    </Link>
+          <Link to="/man-vendor">
+            <ListItem button key={'Vendor Applications'}>
+              <ListItemIcon><MailIcon /></ListItemIcon>
+              <ListItemText primary={'Vendor Applications'} />
+            </ListItem>
+          </Link>
 
-                    <Link to="/man-performer">
-                        <ListItem button key={'Performer Applications'}>
-                            <ListItemIcon><ContactMailIcon /></ListItemIcon>
-                            <ListItemText primary={'Performer Applications'} />
-                        </ListItem>
-                    </Link>
+          <Link to="/man-performer">
+            <ListItem button key={'Performer Applications'}>
+              <ListItemIcon><ContactMailIcon /></ListItemIcon>
+              <ListItemText primary={'Performer Applications'} />
+            </ListItem>
+          </Link>
 
-                </List>
+        </List>
         <Divider />
-        <ListItem button key={'Logout'}>
-        <ListItemIcon><ExitToAppIcon/></ListItemIcon>
-        <ListItemText primary="Logout"/>
+        <ListItem 
+        onClick={logout}
+        button key={'Logout'}>
+          <ListItemIcon><ExitToAppIcon /></ListItemIcon>
+          <ListItemText primary="Logout" />
         </ListItem>
         {/* <Divider />
         <List>
@@ -123,63 +163,30 @@ export default function ManagerInboxComponent() {
       </Drawer>
       <main id="main" className={classes.content}>
         <div className={classes.toolbar} />
-        <h1>Unread Messages: 2</h1>
-       <Card className='card'>
-       <CardContent>
-          <EmailIcon/>
-          <Typography component="h5" variant="h5">
-            Subject: Ticket Price
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            From: James Smith
-          </Typography>
-        </CardContent>
-       </Card>
-       <Divider/>
-       <Card className='card'>
-       <CardContent>
-          <FolderOpenIcon/>
-          <Typography component="h5" variant="h5">
-            Subject: Venue
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            From: Harold Wilson
-          </Typography>
-        </CardContent>
-       </Card>
-       <Card className='card'>
-       <CardContent>
-          <FolderOpenIcon/>
-          <Typography component="h5" variant="h5">
-            Subject: Merchandise
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            From: Jenny Taft
-          </Typography>
-        </CardContent>
-       </Card>
-       <Card className='card'>
-       <CardContent>
-          <EmailIcon/>
-          <Typography component="h5" variant="h5">
-            Subject: Performers
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            From: Sally Wilson
-          </Typography>
-        </CardContent>
-       </Card>
-       <Card className='card'>
-       <CardContent>
-          <FolderOpenIcon/>
-          <Typography component="h5" variant="h5">
-            Subject: Food & Beverages
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            From: Danny Brown
-          </Typography>
-        </CardContent>
-       </Card>
+        {(messages.length !== 0) ?
+          <div>
+            <h1>Total Messages: {messages.length}</h1>
+            {
+            // messages.sorted(reverse=true)
+            messages.map((m: any) => {
+              return <Card className='card cardInfo' key={count++}>
+                <CardContent>
+                  <EmailIcon />
+                  <Typography component="h5" variant="h5">
+                    From: {m["sender"]["firstName"] + " " + m["sender"]["lastName"] }
+                 </Typography>
+                  <Typography component="h5" variant="h5">
+                    Message: {m["message"]}
+                 </Typography>
+                 <Typography variant="subtitle1">
+                    Sent: {String(new Date(m["sentTime"]))}
+                 </Typography>
+                </CardContent>
+              </Card>
+            })}
+
+          </div>
+          : <h1>You have no Messages</h1>}
       </main>
     </div>
   );

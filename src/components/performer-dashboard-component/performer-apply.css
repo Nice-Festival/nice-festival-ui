@@ -114,10 +114,21 @@
 .card{
     margin-top: .7rem;
     width: 60vw;
+    min-height: 10rem;
 }
 
 ::placeholder{
     color: #000;
+}
+
+
+.cardContent{
+    width: 50vw;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 @media(max-width: 900px){

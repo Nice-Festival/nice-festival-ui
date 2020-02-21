@@ -54,31 +54,46 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function PerformerApplyComponent() {
+export default function PerformerApplyComponent(props: any) {
     const classes = useStyles();
     let [details, setDetails] = useState("");
     const appState = store.getState();
     let currentUser = appState.userState.currentUser;
     let applied = false;
+
+   
+
+  useEffect(() => {
+    if(currentUser === null){
+      props.history.push("/")
+  } 
+  })
+
+  const logout = () => {
+    props.history.push("/")
+  }
     
-    useEffect(() => {
-           
-      });
 
     const submitApplication = async () => {
         let data = await apiGetArtist();
         let artists:any = data;
         console.log(artists);
-        // artists.map((u:any) => {
-        //     if(u["user"]["id"] === currentUser["id"]){
-        //         console.log("can't apply again");
-        //         applied = true;
-        //     }
-        // })
-        apiArtistApply(currentUser, details)
-        // if(applied = false){
+        for (let index = 0; index < artists.length; index++) {
+            if(artists[index]["user"]["id"] === currentUser["id"]){
+                console.log("can't apply again");
+                applied = true;
+                break;
+            }
             
-        // }
+        }
+        if(applied === false){
+            await apiArtistApply(currentUser, details);
+            props.history.push("performer");
+
+        }
+        if(applied === true){
+            console.log("Already");
+        }
 
     }
     return (
@@ -109,15 +124,15 @@ export default function PerformerApplyComponent() {
                         </ListItem>
                     </Link> */}
 
-                    <Link to="/per-inbox">
+                    {/* <Link to="/per-inbox">
                         <ListItem button key={'Inbox'}>
                             <ListItemIcon><InboxIcon /></ListItemIcon>
                             <ListItemText primary={'Inbox'} />
                         </ListItem>
-                    </Link>
+                    </Link> */}
 
                     <Link to="/per-status">
-                        <ListItem button key={'Vendor Applications'}>
+                        <ListItem button key={'Performer Applications'}>
                             <ListItemIcon><ContactMailIcon /></ListItemIcon>
                             <ListItemText primary={'Performer Application Status'} />
                         </ListItem>
@@ -132,7 +147,9 @@ export default function PerformerApplyComponent() {
 
                 </List>
                 <Divider />
-                <ListItem button key={'Logout'}>
+                <ListItem 
+                onClick={logout}
+                button key={'Logout'}>
                     <ListItemIcon><ExitToAppIcon /></ListItemIcon>
                     <ListItemText primary="Logout" />
                 </ListItem>

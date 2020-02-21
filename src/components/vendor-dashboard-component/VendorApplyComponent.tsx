@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,6 +16,9 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
 import "./vendor-apply.css";
 import { Link } from 'react-router-dom';
+import { apiVendorApply } from '../remote/vendor-apply';
+import { apiGetVendor } from '../remote/get-vendors';
+import {store} from '../../Store';
 
 
 const drawerWidth = 240;
@@ -50,9 +53,52 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function VendorApplyComponent() {
+export default function VendorApplyComponent(props:any) {
     const classes = useStyles();
+    let [details, setDetails] = useState("");
+    let [type, setType] = useState("");
+    let [name, setName] = useState("");
+    const appState = store.getState();
+    let currentUser = appState.userState.currentUser;
+    let applied = false;
 
+    useEffect(() => {
+          if(type.length < 1){
+            setType("FOOD");
+          }
+          if(currentUser === null){
+              props.history.push("/")
+          }
+    });
+    const submitApplication = async () => {
+        let data = await apiGetVendor();
+        let vendor:any = data;
+        console.log(type);
+        console.log(type);
+        console.log(vendor);
+        for (let index = 0; index < vendor.length; index++) {
+            if(vendor[index]["user"]["id"] === currentUser["id"]){
+                console.log("can't apply again");
+                applied = true;
+                break;
+            }
+            
+        }
+        if(applied === false){
+            await apiVendorApply(currentUser, name, details, type)
+            props.history.push("/vendor")
+            applied = true;
+        }
+        else if(applied === true){
+            console.log(applied);
+            // props.history.push("/vendor")
+            console.log("Already applied!");
+        }
+    }
+
+    const logout = () => {
+        props.history.push("/")
+      }
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -80,13 +126,13 @@ export default function VendorApplyComponent() {
                             <ListItemText primary={'Home'} />
                         </ListItem>
                     </Link> */}
-
+{/* 
                     <Link to="/ven-inbox">
                         <ListItem button key={'Inbox'}>
                             <ListItemIcon><InboxIcon /></ListItemIcon>
                             <ListItemText primary={'Inbox'} />
                         </ListItem>
-                    </Link>
+                    </Link> */}
 
                     <Link to="/ven-status">
                         <ListItem button key={'Vendor Applications'}>
@@ -104,7 +150,9 @@ export default function VendorApplyComponent() {
 
                 </List>
                 <Divider />
-                <ListItem button key={'Logout'}>
+                <ListItem 
+                onClick={logout}
+                button key={'Logout'}>
                     <ListItemIcon><ExitToAppIcon /></ListItemIcon>
                     <ListItemText primary="Logout" />
                 </ListItem>
@@ -125,18 +173,32 @@ export default function VendorApplyComponent() {
                     <div>
                         <h1>Vendor Application</h1>
                         Company Name:
-                        <input type="text" placeholder="Crazy Chicken" className="txtb" />
-                        Website:
-                        <input type="text" placeholder="www.website.com" className="txtb" />
+                        <input 
+                        type="text" 
+                        placeholder="Crazy Chicken" 
+                        className="txtb" 
+                        onChange={(e) => setName(e.target.value)}
+                        />
                         Company Product:
-                        <select className="txtb">
-                            <option>Food</option>
-                            <option>Beverages</option>
-                            <option>Merchandise</option>
+                        <select 
+                        className="txtb"
+                        onChange={(e) => setType(e.target.value)}
+                        >
+                            <option value="FOOD">Food</option>
+                            <option value="BEVERAGES">Beverages</option>
+                            <option value="MERCHANDISE">Merchandise</option>
                         </select>
                         More Details:
-                        <textarea className="txtb"></textarea>
-                        <input type="submit" value="Apply" className="signup-btn" />
+                        <textarea 
+                        className="txtb"
+                        onChange={(e) => setDetails(e.target.value)}
+                        ></textarea>
+                        <input 
+                        type="button" 
+                        value="Apply" 
+                        className="signup-btn" 
+                        onClick={submitApplication}
+                        />
                     </div>
                 </div>
             </div>
