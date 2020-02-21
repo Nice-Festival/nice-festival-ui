@@ -68,6 +68,10 @@ export default function PerformerApplicationComponent(props:any) {
           }
     });
 
+    const logout = () => {
+        props.history.push("/")
+      }
+
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -119,7 +123,9 @@ export default function PerformerApplicationComponent(props:any) {
 
                 </List>
                 <Divider />
-                <ListItem button key={'Logout'}>
+                <ListItem 
+                onClick={logout}
+                button key={'Logout'}>
                     <ListItemIcon><ExitToAppIcon /></ListItemIcon>
                     <ListItemText primary="Logout" />
                 </ListItem>

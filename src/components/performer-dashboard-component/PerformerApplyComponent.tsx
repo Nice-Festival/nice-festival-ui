@@ -68,6 +68,10 @@ export default function PerformerApplyComponent(props: any) {
       props.history.push("/")
   } 
   })
+
+  const logout = () => {
+    props.history.push("/")
+  }
     
 
     const submitApplication = async () => {
@@ -143,7 +147,9 @@ export default function PerformerApplyComponent(props: any) {
 
                 </List>
                 <Divider />
-                <ListItem button key={'Logout'}>
+                <ListItem 
+                onClick={logout}
+                button key={'Logout'}>
                     <ListItemIcon><ExitToAppIcon /></ListItemIcon>
                     <ListItemText primary="Logout" />
                 </ListItem>

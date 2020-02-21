@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginComponent  from './components/login-component/LoginContainer';
-import { HomeComponent } from './components/home-component/HomeComponent';
+import HomeComponent from './components/home-component/HomeContainer';
 import {RegisterComponent}  from './components/register-component/RegisterComponent';
 import CustomerDashboardComponent from './components/customer-dashboard-component/CustomerDashboardComponent';
 // import VendorDashboardComponent from './components/vendor-dashboard-component/VendorDashboardComponent';

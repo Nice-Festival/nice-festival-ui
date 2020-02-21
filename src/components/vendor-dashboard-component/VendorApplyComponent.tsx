@@ -96,13 +96,9 @@ export default function VendorApplyComponent(props:any) {
         }
     }
 
-    const logOut = () => {
-        appState.userState.setState({
-            ...appState,
-            currentUser: null
-        })
-    }
-
+    const logout = () => {
+        props.history.push("/")
+      }
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -154,7 +150,9 @@ export default function VendorApplyComponent(props:any) {
 
                 </List>
                 <Divider />
-                <ListItem button key={'Logout'}>
+                <ListItem 
+                onClick={logout}
+                button key={'Logout'}>
                     <ListItemIcon><ExitToAppIcon /></ListItemIcon>
                     <ListItemText primary="Logout" />
                 </ListItem>

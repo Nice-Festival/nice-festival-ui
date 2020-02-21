@@ -66,6 +66,10 @@ export default function VendorApplicationComponent(props:any) {
             props.history.push("/")
         }
   });
+
+  const logout = () => {
+    props.history.push("/")
+  }
     
 
     return (
@@ -119,7 +123,9 @@ export default function VendorApplicationComponent(props:any) {
 
                 </List>
                 <Divider />
-                <ListItem button key={'Logout'}>
+                <ListItem 
+                onClick={logout}
+                button key={'Logout'}>
                     <ListItemIcon><ExitToAppIcon /></ListItemIcon>
                     <ListItemText primary="Logout" />
                 </ListItem>

@@ -90,6 +90,10 @@ export default function ManagerInboxComponent(props:any) {
     getMessages();
   })
 
+  const logout = () => {
+    props.history.push("/")
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -141,7 +145,9 @@ export default function ManagerInboxComponent(props:any) {
 
         </List>
         <Divider />
-        <ListItem button key={'Logout'}>
+        <ListItem 
+        onClick={logout}
+        button key={'Logout'}>
           <ListItemIcon><ExitToAppIcon /></ListItemIcon>
           <ListItemText primary="Logout" />
         </ListItem>
