@@ -15,7 +15,7 @@ export class TicketsComponent extends React.Component<any, any> {
 
     buy = () => {
         apiMakePayment();
-        this.props.history.push("/");
+        this.props.history.push("customer");
     }
     
     goBack = () => {
@@ -41,9 +41,12 @@ export class TicketsComponent extends React.Component<any, any> {
                     </Card>
                     <div>
                         <CheckoutComponet />
-                        <button
+                       
+                    </div>
+                    <div>
+                    <button
                         onClick={this.goBack}
-                        >Go back dashboard</button>
+                        >Go back to dashboard</button>
                     </div>
                 </div>
             </div>

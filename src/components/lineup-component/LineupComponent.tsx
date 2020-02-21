@@ -22,7 +22,7 @@ export class LineupComponent extends React.Component<any,any> {
   render() {
 
     return (
-      <div>
+      <div id="mainContent">
 
         <NavbarComponent />
         <ListGroup className="content">
@@ -35,10 +35,6 @@ export class LineupComponent extends React.Component<any,any> {
         </ListGroupItemText>
       </ListGroupItem>
         </ListGroup>
-
-        <br></br>
-        <br></br>
-        <br></br>
 
 
         <ListGroup className="content">

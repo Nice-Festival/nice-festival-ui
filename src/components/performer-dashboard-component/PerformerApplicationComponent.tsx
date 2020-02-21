@@ -23,6 +23,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import "./performer-apply.css";
 import {store} from '../../Store';
+import { apiGetArtist } from '../remote/get-artist';
 
 
 const drawerWidth = 240;
@@ -61,11 +62,27 @@ export default function PerformerApplicationComponent(props:any) {
     const classes = useStyles();
     const appState = store.getState();
     let currentUser = appState.userState.currentUser;
+    let artist:any
+    let data:any;
+    let count = 0;
+    let [artists, setArtists] = useState([]);
+    
+
+    const getArtists = async () => {
+        if (artists.length === 0) {
+          data = await apiGetArtist();
+          setArtists(data)
+        }
+        // formData = messages[0]["message"]
+        console.log(artists);
+        return artists;
+      }
 
     useEffect(() => {
           if(currentUser === null){
               props.history.push("/")
           }
+          getArtists();
     });
 
     const logout = () => {
@@ -142,26 +159,34 @@ export default function PerformerApplicationComponent(props:any) {
             <main id="main" className={classes.content}>
                 <div className={classes.toolbar} />
                 <h1>Performer Application</h1>
-                <Card className="card">
-                        <CardContent>
-                            <Typography className="ticket-info" color="textSecondary" gutterBottom>
-                                Performer Name
-                            </Typography>
-                            <Typography className="quantity" variant="h5" component="h2">
-                                Stage: Awaiting
-                            </Typography>
-                            <Typography className="quantity" variant="h5" component="h2">
-                                Set Time: Awaiting
-                            </Typography>
-                            <Typography className="shipping" color="textSecondary">
-                                Performer Status: Pending
-                            </Typography>
-                            {/* <Typography variant="body2" component="p">
-                                well meaning and kindly.
-                                <br />
-                            </Typography> */}
-                        </CardContent>
-                    </Card>
+                {(artists.length !== 0) ? 
+                
+                    artists.map((arr) => {
+                        if(arr["user"]["id"] === currentUser["id"]){
+                            return  <Card className="card" key={count++}>
+                            <CardContent>
+                                <Typography className="ticket-info" color="textSecondary" gutterBottom>
+                                    Artist Name: {arr["user"]["username"]}
+                                </Typography>
+                                <Typography className="quantity" variant="h5" component="h2">
+                                    Stage: {arr["stage"]}
+                                </Typography>
+                                <Typography className="quantity" variant="h5" component="h2">
+                                    Set Time: {arr["time"]}
+                                </Typography>
+                                <Typography className="shipping" color="textSecondary">
+                                    Performer Status: {arr["status"]}
+                                </Typography>
+                                {/* <Typography variant="body2" component="p">
+                                    well meaning and kindly.
+                                    <br />
+                                </Typography> */}
+                            </CardContent>
+                        </Card>
+                        }
+                    })
+                : <h1>You have not applied yet!</h1>}
+               
             </main>
         </div>
     );
