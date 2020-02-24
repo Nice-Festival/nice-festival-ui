@@ -4,7 +4,7 @@ import axios from 'axios';
 export const apiSendMessage = async (current_user: any, message: string) => {
 
     try {
-        const response = await axios.post('http://localhost:8080/nice-festival/send/new', {
+        const response = await axios.post('http://nicefestival-ui.s3-website.us-east-2.amazonaws.com/send/new', {
             "message": message,
             "sender": {
                 "id": current_user["id"],

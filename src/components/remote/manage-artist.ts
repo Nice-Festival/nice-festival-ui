@@ -3,7 +3,7 @@ import axios from 'axios';
 export const apiManageArtist = async (artist:any, stage:any, time:any, day:any, status:any) => {
 
     try {
-        const response = await axios.post('http://localhost:8080/nice-festival/manager/art', {
+        const response = await axios.post('http://nicefestival-ui.s3-website.us-east-2.amazonaws.com/manager/art', {
             "id": artist["id"],
             "stage": stage,
             "user": {

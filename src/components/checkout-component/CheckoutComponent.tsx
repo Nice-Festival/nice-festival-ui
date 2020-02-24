@@ -1,11 +1,18 @@
 import React from 'react'
 import { Divider } from '@material-ui/core'
 import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Elements } from "@stripe/react-stripe-js";
+
 import "./checkout.css"
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe("pk_test_XLDb2jQUz1tnE03Xcnxd3Vl300DCpogQ6s");
 
 
 export class CheckoutComponet extends React.Component {
 
+
+  
     render(){
 
         return(

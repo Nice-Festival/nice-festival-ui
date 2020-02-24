@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const apiLogin = async (username: string, password: string): Promise<object> => {
     try {
-        const response = await axios.post('http://localhost:8080/nice-festival/auth', {
+        const response = await axios.post('http://nicefestival-ui.s3-website.us-east-2.amazonaws.com/auth', {
             "username": username,
             "password": password
         })

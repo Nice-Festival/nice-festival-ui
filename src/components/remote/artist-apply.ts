@@ -4,7 +4,7 @@ import axios from 'axios';
 export const apiArtistApply = async (current_user: any, details: string) => {
 
     try {
-        const response = await axios.post('http://localhost:8080/nice-festival/artist/apply', {
+        const response = await axios.post('http://nicefestival-ui.s3-website.us-east-2.amazonaws.com/artist/apply', {
             "user": {
                 "id": current_user["id"],
                 "username": current_user["username"],

@@ -2,5 +2,5 @@ import axios from 'axios';
 
 
 export const apiMakePayment= () => {
-     axios.get('http://localhost:8080/nice-festival/buy/ticket')
+     axios.get('http://nicefestival-ui.s3-website.us-east-2.amazonaws.com/buy/ticket')
 } 

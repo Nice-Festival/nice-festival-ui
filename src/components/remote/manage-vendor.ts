@@ -3,7 +3,7 @@ import axios from 'axios';
 export const apiManageVendor = async (vendor:any, tent:any, status:any) => {
 
     try {
-        const response = await axios.post('http://localhost:8080/nice-festival/manager/ven', {
+        const response = await axios.post('http://nicefestival-ui.s3-website.us-east-2.amazonaws.com/manager/ven', {
             "id": vendor["id"],
             "user": {
                 "id": vendor["user"]["id"],

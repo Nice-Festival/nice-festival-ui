@@ -11,7 +11,7 @@ export const apiRegister = async (username: string, password: string, firstName:
         role
     }
     try {
-        const response = await axios.post('http://localhost:8080/nice-festival/register/new-user', {
+        const response = await axios.post('http://nicefestival-ui.s3-website.us-east-2.amazonaws.com/register/new-user', {
             "username": username,
             "password": password,
             "firstName": firstName,
@@ -23,7 +23,7 @@ export const apiRegister = async (username: string, password: string, firstName:
             const body = await response.data
             if (body["role"] === "CUSTOMER") {
                 try {
-                    const response2 = await axios.post('http://localhost:8080/nice-festival/register/customer', {
+                    const response2 = await axios.post('http://nicefestival-ui.s3-website.us-east-2.amazonaws.com/register/customer', {
                         "address": "null",
                         "city": "null",
                         "state": "null",

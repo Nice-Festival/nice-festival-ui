@@ -4,7 +4,7 @@ import axios from 'axios';
 export const apiVendorApply = async (current_user: any, companyName: string, details: string, foodType: string) => {
 
     try {
-        const response = await axios.post('http://localhost:8080/nice-festival/vendor/apply', {
+        const response = await axios.post('http://nicefestival-ui.s3-website.us-east-2.amazonaws.com/vendor/apply', {
             "user": {
                 "id": current_user["id"],
                 "username": current_user["username"],
